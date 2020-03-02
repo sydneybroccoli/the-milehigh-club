@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
+  resources :aircrafts, only: [:index, :show]
   resources :users, except: :index do
-    resources :aircrafts do
+    resources :aircrafts, except: [:index, :show] do
       resources :transactions, only: [ :create, :new ]
     end
   end
