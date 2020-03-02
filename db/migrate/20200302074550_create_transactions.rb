@@ -1,7 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration[5.2]
   def change
     create_table :transactions do |t|
-      t.string :type
+      t.string :transaction_type
       t.datetime :start_date
       t.datetime :end_date
       t.boolean :seen, default: false
