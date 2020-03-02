@@ -1,4 +1,4 @@
-class Aircraft < ApplicationRecord
+  class Aircraft < ApplicationRecord
   belongs_to :user
 
   validates :make, presence: true
