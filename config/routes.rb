@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
-  # get 'aircrafts/index'
-  # get 'aircrafts/show'
-  # get 'aircrafts/new'
-  # get 'aircrafts/create'
-  # get 'aircrafts/edit'
-  # get 'aircrafts/update'
-  # get 'aircrafts/delete'
+  get 'users/show'
+  get 'users/new'
+  get 'users/create'
+  get 'users/edit'
+  get 'users/update'
+  get 'users/destroy'
+  get 'aircrafts/index'
+  get 'aircrafts/show'
+  get 'aircrafts/new'
+  get 'aircrafts/create'
+  get 'aircrafts/edit'
+  get 'aircrafts/update'
+  get 'aircrafts/delete'
+
   root to: 'pages#home'
 
   resources :aircrafts do
