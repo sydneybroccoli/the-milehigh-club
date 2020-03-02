@@ -1,4 +1,7 @@
 class Review < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :transaction_id
+  belongs_to :user
+  belongs_to :transaction
+
+  validates :content, presence: true
+  validates :rating, presence: true
 end

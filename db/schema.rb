@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_074635) do
     t.string "type"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean "seen"
-    t.boolean "confirm"
+    t.boolean "seen", default: false
+    t.boolean "confirm", default: false
     t.float "final_price"
     t.bigint "user_id"
     t.bigint "aircraft_id"

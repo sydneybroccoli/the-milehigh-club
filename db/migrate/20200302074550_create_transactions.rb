@@ -4,8 +4,8 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.string :type
       t.datetime :start_date
       t.datetime :end_date
-      t.boolean :seen
-      t.boolean :confirm
+      t.boolean :seen, default: false
+      t.boolean :confirm, default: false
       t.float :final_price
       t.references :user, foreign_key: true
       t.references :aircraft, foreign_key: true
