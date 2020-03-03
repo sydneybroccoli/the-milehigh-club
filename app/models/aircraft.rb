@@ -1,7 +1,7 @@
   class Aircraft < ApplicationRecord
   belongs_to :user
   has_many :bookings
-  hasP=_one_attached :photo
+  has_many_attached :photo
 
   validates :make, presence: true
   validates :model, presence: true
