@@ -9,20 +9,20 @@ User.destroy_all
 puts 'Creating new database...'
 
 aircrafts_array = []
-sellers_array = []
+owners_array = []
 buyers_array = []
 bookings_array = []
 reviews_array = []
 
 5.times do
   username = Faker::Internet.username
-  user = User.new(
+  owner = User.new(
     username: username,
     password: 'password',
     email: Faker::Internet.email(name: username)
   )
-  user.save
-  sellers_array << user
+  owner.save
+  owners_array << owner
 
   2.times do
     aircraft = Aircraft.new(
@@ -34,7 +34,7 @@ reviews_array = []
       hours: Faker::Vehicle.mileage.to_i,
       year: Faker::Vehicle.year.to_i,
       description: Faker::Vehicle.standard_specs.join,
-      user_id: user.id
+      user_id: owner.id
     )
     aircraft.save
     aircrafts_array << aircraft
@@ -44,13 +44,13 @@ end
 
 5.times do
   username = Faker::Internet.username
-  user = User.new(
+  buyer = User.new(
     username: username,
     password: 'password',
     email: Faker::Internet.email(name: username)
   )
-  user.save
-  buyers_array << user
+  buyer.save
+  buyers_array << buyer
   seen = [true, false].sample
   if seen
     confirm = [true, false][rand(0..1)]
@@ -62,12 +62,12 @@ end
   start = Date.today
   final = Faker::Date.between(from: 30.days.from_now, to: Date.today)
   booking = Booking.new(
-    booking_type: ['sale','rental'].sample,
+    booking_type: 'rental',
     start_date: start,
     end_date: final,
     seen: seen,
     confirm: confirm,
-    user_id: user.id,
+    user_id: buyer.id,
     aircraft_id: aircraft.id,
     final_price: aircraft.price * (final - start)
   )
@@ -78,7 +78,6 @@ end
     rating: rand(0..10),
     content: Faker::Hipster.sentence,
     booking_id: booking.id,
-    user_id: user.id
     )
   review.save
   reviews_array << review
