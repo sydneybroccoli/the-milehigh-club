@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :aircrafts, dependent: :destroy
-  has_many :transactions
+  has_many :bookings
   has_many :reviews
 
   # validates :username, presence: true, uniqueness: true

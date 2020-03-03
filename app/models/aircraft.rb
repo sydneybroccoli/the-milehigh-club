@@ -1,6 +1,6 @@
   class Aircraft < ApplicationRecord
   belongs_to :user
-  has_many :transactions
+  has_many :bookings
 
   validates :make, presence: true
   validates :model, presence: true

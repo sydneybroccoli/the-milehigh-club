@@ -7,9 +7,9 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user = current_user
-    @review.transaction = current_user.transactions.last
+    @review.booking = current_user.bookings.last
     if review.save
-      redirect_to user_aircraft_path(@review.transaction.aircraft)
+      redirect_to user_aircraft_path(@review.bookings.aircraft)
     else
       render 'new'
     end

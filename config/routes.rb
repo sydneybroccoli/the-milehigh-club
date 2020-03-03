@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :aircrafts do
-    resources :transactions, only: [ :create, :new ]
+    resources :bookings, only: [ :create, :new ]
       resources :reviews, only: [ :create, :new ]
   end
 end

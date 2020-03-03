@@ -2,7 +2,7 @@ require 'faker'
 
 puts 'Cleaning database...'
 Review.destroy_all
-Transaction.destroy_all
+Booking.destroy_all
 Aircraft.destroy_all
 User.destroy_all
 
@@ -11,7 +11,7 @@ puts 'Creating new database...'
 aircrafts_array = []
 sellers_array = []
 buyers_array = []
-transactions_array = []
+bookings_array = []
 reviews_array = []
 
 5.times do
@@ -61,8 +61,8 @@ end
   aircraft = aircrafts_array.sample
   start = Date.today
   final = Faker::Date.between(from: 30.days.from_now, to: Date.today)
-  transaction = Transaction.new(
-    transaction_type: ['sale','rental'].sample,
+  booking = Booking.new(
+    booking_type: ['sale','rental'].sample,
     start_date: start,
     end_date: final,
     seen: seen,
@@ -71,13 +71,13 @@ end
     aircraft_id: aircraft.id,
     final_price: aircraft.price * (final - start)
   )
-  transaction.save
-  transactions_array << transaction
+  booking.save
+  bookings_array << booking
 
   review = Review.new(
     rating: rand(0..10),
     content: Faker::Hipster.sentence,
-    transaction_id: transaction.id,
+    booking_id: booking.id,
     user_id: user.id
     )
   review.save

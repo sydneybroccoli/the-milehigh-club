@@ -1,11 +1,11 @@
-class CreateTransactions < ActiveRecord::Migration[5.2]
+class CreateBookings < ActiveRecord::Migration[5.2]
   def change
-    create_table :transactions do |t|
-      t.string :transaction_type
+    create_table :bookings do |t|
+      t.string :booking_type
       t.datetime :start_date
       t.datetime :end_date
-      t.boolean :seen, default: false
-      t.boolean :confirm, default: false
+      t.boolean :seen
+      t.boolean :confirm
       t.float :final_price
       t.references :user, foreign_key: true
       t.references :aircraft, foreign_key: true
