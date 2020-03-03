@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :aircrafts, dependent: :destroy
   has_many :bookings
   has_many :reviews
+  has_one_attached :photo
 
   # validates :username, presence: true, uniqueness: true
   validates :password, presence: true
