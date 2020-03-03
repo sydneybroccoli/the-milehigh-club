@@ -1,0 +1,100 @@
+<div class="user-welcome container">
+  <h2>WELCOME <%= @user.email %></h2>
+</div>
+
+<div class="user-nav container">
+  <ul class="nav nav-tabs nav-fill nav-justified mb-3">
+    <li class="nav-item active"><a data-toggle="tab" href="#account-info">ACCOUNT INFORMATION</a></li>
+    <li class="nav-item"><a data-toggle="tab" href="#user-aircrafts">YOUR AIRCRAFTS</a></li>
+    <li class="nav-item"><a data-toggle="tab" href="#user-bookings">YOUR BOOKINGS</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="account-info" class="tab-pane fade in text-center active">
+      <h3>ACCOUNT INFORMATION</h3>
+      <p>EMAIL: <%= @user.email %></p>
+    </div>
+
+    <div id="user-aircrafts" class="tab-pane text-center fade">
+      <h3>YOUR AIRCRAFTS</h3>
+
+      <% if @user.aircrafts.count < 1 %>
+        <p>you dont have any aircrafts :(</p>
+        <%= link_to 'MAKE ONE NOW!', new_aircraft_path %>
+
+      <% else %>
+        <div class="container">
+          <div class="row">
+            <% @user.aircrafts.each do |aircraft| %>
+              <div class="col-md-4">
+                <%= link_to aircraft_path(aircraft), class: 'no-deco' do %>
+                  <div class="card-trip mb-2">
+                    <%= cl_image_tag("aircraft.jpg",
+                      width: 400,
+                      height: 300,
+                      crop: :fill ) %>
+                      <div class="card-trip-infos">
+                        <div>
+                          <h2><%= aircraft.make %></h2>
+                          <p><%= aircraft.model %></p>
+                        </div>
+
+                        <h2 class="card-trip-pricing"><%= "$#{aircraft.price}" %></h2>
+                        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                      </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="user-bookings" class="tab-pane fade text-center">
+      <h3>YOUR BOOKINGS</h3>
+      <% if @user.bookings.count < 1 %>
+        <p>sorry you don't have any bookings yet :(</p>
+        <%= link_to 'MAKE ONE NOW!', aircrafts_path %>
+
+      <% else %>
+        <div class="container">
+          <div class="row ">
+            <% @user.bookings.each do |booking| %>
+              <div class="col-md-4">
+                <%= link_to aircraft_path(booking.aircraft), class: "no-deco" do %>
+                  <div class="card-trip mb-4">
+                    <%= cl_image_tag("aircraft.jpg",
+                      width: 400,
+                      height: 300,
+                      crop: :fill ) %>
+                    <div class="card-trip-infos">
+                      <div>
+                        <h2><%= booking.aircraft.make %></h2>
+                        <p><%= booking.aircraft.model %></p>
+                      </div>
+
+                      <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.price}" %></h2>
+                      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                    </div>
+                    <div>
+                      <p>TYPE: <%= booking.booking_type %></p>
+                      <p>START DATE: <%= booking.start_date %></p>
+                      <p>END DATE: <%= booking.end_date %></p>
+                      <p>SEEN? <%= booking.seen %></p>
+                      <p>CONFIRMED? <%= booking.confirm %></p>
+                      <p>FINAL PRICE: <%= booking.final_price %></p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
