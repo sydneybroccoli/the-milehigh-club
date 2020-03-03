@@ -12,7 +12,7 @@
   validates :description, presence: true
 
   def unavailable_dates
-    transactions.pluck(:start_date, :end_date).map do |range|
+    bookings.pluck(:start_date, :end_date).map do |range|
       { from: range[0], to: range[1] }
     end
   end
