@@ -3,6 +3,8 @@ ruby '2.6.5'
 
 gem 'devise'
 gem 'faker'
+gem 'dotenv-rails', groups: [:development, :test]
+
 
 gem 'bootsnap', require: false
 gem 'jbuilder', '~> 2.0'
