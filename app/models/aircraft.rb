@@ -1,4 +1,4 @@
-class Aircraft < ApplicationRecord
+  class Aircraft < ApplicationRecord
   belongs_to :user
 
   validates :make, presence: true
@@ -6,7 +6,7 @@ class Aircraft < ApplicationRecord
   validates :location, presence: true
   validates :price, presence: true
   validates :capacity, presence: true
-  validates :hour, presence: true
+  validates :hours, presence: true
   validates :year, presence: true
   validates :description, presence: true
 end
