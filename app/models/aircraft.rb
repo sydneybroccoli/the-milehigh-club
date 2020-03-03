@@ -1,6 +1,7 @@
   class Aircraft < ApplicationRecord
   belongs_to :user
-  has_many :transactions
+  has_many :bookings
+  has_many_attached :photo
 
   validates :make, presence: true
   validates :model, presence: true
@@ -12,7 +13,7 @@
   validates :description, presence: true
 
   def unavailable_dates
-    transactions.pluck(:start_date, :end_date).map do |range|
+    bookings.pluck(:start_date, :end_date).map do |range|
       { from: range[0], to: range[1] }
     end
   end
