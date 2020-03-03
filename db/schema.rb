@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 2020_03_03_075411) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.string "booking_type"
+    t.string "booking_type", default: "rental"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean "seen"
-    t.boolean "confirm"
+    t.boolean "seen", default: false
+    t.boolean "confirm", default: false
     t.float "final_price"
     t.bigint "user_id"
     t.bigint "aircraft_id"
