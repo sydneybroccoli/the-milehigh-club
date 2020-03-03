@@ -61,15 +61,15 @@ RSpec.describe User, type: :model do
       expect(user.aircrafts.count).to eq(1)
     end
 
-    it 'transactions' do
+    it 'bookings' do
       owner = FactoryBot.create(:user, username: 'owner')
       buyer = FactoryBot.create(:user, username: 'buyer')
-      expect(buyer).to respond_to(:transactions)
-      expect(buyer.transactions.count).to eq(0)
+      expect(buyer).to respond_to(:bookings)
+      expect(buyer.bookings.count).to eq(0)
 
       air = FactoryBot.create(:aircraft, user_id: owner.id)
-      transaction = FactoryBot.create(:transaction, { user_id: buyer.id, aircraft_id: air.id })
-      expect(buyer.transactions.count).to eq(1)
+      booking = FactoryBot.create(:booking, { user_id: buyer.id, aircraft_id: air.id })
+      expect(buyer.bookings.count).to eq(1)
     end
   end
 end

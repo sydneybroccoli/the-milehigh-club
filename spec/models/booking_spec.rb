@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Transaction, type: :model do
+RSpec.describe Booking, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   buyer = User.create(
     username: 'joe',
@@ -25,7 +25,7 @@ RSpec.describe Transaction, type: :model do
     )
 
   valid_attributes = {
-    transaction_type: 'sale',
+    booking_type: 'sale',
     start_date: Date.today,
     end_date: Date.tomorrow,
     seen: true,

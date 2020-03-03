@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :transaction do
-    transaction_type { 'rental' }
+  factory :booking do
+    booking_type { 'rental' }
     start_date { Date.today }
     end_date { Date.tomorrow }
     seen { true }
