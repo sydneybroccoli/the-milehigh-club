@@ -17,7 +17,6 @@ reviews_array = []
 5.times do
   username = Faker::Internet.username
   owner = User.new(
-    username: username,
     password: 'password',
     email: Faker::Internet.email(name: username)
   )
@@ -45,7 +44,6 @@ end
 5.times do
   username = Faker::Internet.username
   buyer = User.new(
-    username: username,
     password: 'password',
     email: Faker::Internet.email(name: username)
   )
