@@ -42,12 +42,24 @@
           <%= simple_form_for [@aircraft, @booking] do |f| %>
             <%= f.label :booking_type %>
             <%= f.text_field :booking_type %>
-            <%= f.input :start_date, as: :string, type: :text %>
-            <%= f.input :end_date, as: :string, type: :text %>
+            <%= f.input :start_date, as: :string, type: :text, id: "booking_start_date" %>
+            <%= f.input :end_date, as: :string, type: :text, id: "booking_end_date" %>
             <%= f.submit "Book", class: "btn btn-primary" %>
           <% end %>
         <%# end %>
     </div>
   </div>
+
+  <!-- Reviews -->
+
+  <% @aircraft.bookings.each do |booking| %>
+    <% booking.reviews.each do |review| %>
+      <p><%= review.content %></p>
+      <p id="stars"><% review.rating.times do  %>
+        <i class="fas fa-star"></i>
+      <% end %></p>
+    <% end %>
+  <% end %>
+
 </div>
 
