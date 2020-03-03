@@ -1,31 +1,23 @@
 class ReviewsController < ApplicationController
-  def index
-
-  end
 
   def new
     @review = Review.new
-    @transaction = Transaction.find(params[:transaction_id])
   end
 
   def create
-    @transaction = Transaction.find(params[:transaction_id])
     @review = Review.new(review_params)
-    if @review.save
-      redirect to transaction_path(@transaction.id)
+    @review.user = current_user
+    @review.transaction = current_user.transactions.last
+    if review.save
+      redirect_to user_aircraft_path(@review.transaction.aircraft)
     else
       render 'new'
     end
   end
 
-  def show
-  end
-
   private
 
   def review_params
-    params.require(:review).permit(:content, :rating)
+    params.require(:review).require(:rating, :content)
   end
-
-
 end
