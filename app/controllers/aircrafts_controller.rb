@@ -3,6 +3,8 @@ class AircraftsController < ApplicationController
   end
 
   def show
+    @aircraft = Aircraft.find(params[:id])
+    @transaction = Transaction.new
   end
 
   def new
