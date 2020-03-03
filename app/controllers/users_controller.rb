@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
+    @aircraft = Aircraft.new
   end
 
   private
 
   def user_params
-    params.require(:user).require(:email)
+    params.require(:user).permit(:email)
   end
 end
