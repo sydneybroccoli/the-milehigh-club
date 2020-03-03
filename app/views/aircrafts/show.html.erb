@@ -1,0 +1,16 @@
+
+<h1><%= @aircraft.make %></h1>
+
+
+
+<div id='aircraft-transaction-dates' data-unavailable="<%= @aircraft.unavailable_dates.to_json %>">
+    <%# if current_user.id != @flat.user_id  %>
+      <%= simple_form_for [@aircraft, @transaction] do |f| %>
+        <%= f.label :transaction_type %>
+        <%= f.text_field :transaction_type %>
+        <%= f.input :start_date, as: :string, type: :text %>
+        <%= f.input :end_date, as: :string, type: :text %>
+        <%= f.submit "Book", class: "btn btn-primary" %>
+      <% end %>
+    <%# end %>
+ </div>
