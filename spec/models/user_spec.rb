@@ -1,6 +1,4 @@
 require 'rails_helper'
-# require 'factory_bot_rails'
-# include FactoryBot::Syntax::Methods
 
 RSpec.describe User, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
@@ -55,63 +53,23 @@ RSpec.describe User, type: :model do
 
   context 'has many...' do
     it 'aircrafts' do
+      user = FactoryBot.create(:user)
+      expect(user).to respond_to(:aircrafts)
+      expect(user.aircrafts.count).to eq(0)
+
+      air = FactoryBot.create(:aircraft, user_id: user.id)
+      expect(user.aircrafts.count).to eq(1)
     end
 
     it 'transactions' do
-    end
+      owner = FactoryBot.create(:user, username: 'owner')
+      buyer = FactoryBot.create(:user, username: 'buyer')
+      expect(buyer).to respond_to(:transactions)
+      expect(buyer.transactions.count).to eq(0)
 
-    it 'reviews' do
+      air = FactoryBot.create(:aircraft, user_id: owner.id)
+      transaction = FactoryBot.create(:transaction, { user_id: buyer.id, aircraft_id: air.id })
+      expect(buyer.transactions.count).to eq(1)
     end
   end
-
-  # it 'has many aircrafts' do
-  #   user = User.create!(valid_attributes)
-  #   expect(user).to respond_to(:aircrafts)
-  #   expect(user.aircrafts.count).to eq(0)
-  #   aircraft = Aircraft.create(
-  #     make: 'make',
-  #     model: 'model',
-  #     location: 'location',
-  #     price: 1_000_000,
-  #     capacity: 100,
-  #     hours: 10_000,
-  #     year: 2020,
-  #     description: 'description',
-  #     user_id: user.id
-  #     )
-  #   expect(user.aircrafts.count).to eq(1)
-  # end
-  # User.where(username: 'sydney').destroy_all
-
-  # it 'should destroy_all aircrafts when destroy_alling self' do
-  #   user = User.create!(valid_attributes)
-  #   aircraft = Aircraft.create(
-  #     make: 'make',
-  #     model: 'model',
-  #     location: 'location',
-  #     price: 1_000_000,
-  #     capacity: 100,
-  #     hours: 10_000,
-  #     year: 2020,
-  #     description: 'description',
-  #     user_id: user.id
-  #     )
-  #   expect{ user.destroy }.to change { Aircraft.count }.from(1).to(0)
-  # end
-  # User.where(username: 'sydney').destroy_all
-
-  # it 'has many transactions' do
-  #   user = User.create!(valid_attributes)
-  #   expect(user).to respond_to(:transactions)
-  #   expect(user.transactions).to eq(0)
-  # end
-  # User.where(username: 'sydney').destroy_all
-
-  # it 'has many reviews' do
-  #   user = User.create!(valid_attributes)
-  #   expect(user).to respond_to(:transactions)
-  #   expect(user.transactions).to eq(0)
-  # end
-  # User.where(username: 'sydney').destroy_all
-
 end
