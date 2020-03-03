@@ -21,7 +21,7 @@ class AircraftsController < ApplicationController
     @aircraft = Aircraft.new(aircraft_params)
     @aircraft.user = current_user
     if @aircraft.save
-      redirect_to user_aircraft_path(@aircraft)
+      redirect_to aircraft_path(@aircraft)
     else
       render 'new'
     end
@@ -47,6 +47,6 @@ class AircraftsController < ApplicationController
   end
 
   def aircraft_params
-    params.require(:aircraft).require(:make, :model, :location, :price, :capacity, :hours, :year, :description)
+    params.require(:aircraft).permit(:make, :model, :location, :price, :capacity, :hours, :year, :description, photos: [])
   end
 end
