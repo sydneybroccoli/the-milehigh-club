@@ -61,8 +61,8 @@ end
   aircraft = aircrafts_array.sample
   start = Date.today
   final = Faker::Date.between(from: 30.days.from_now, to: Date.today)
-  booking = booking.new(
-    transaction_type: ['sale','rental'].sample,
+  booking = Booking.new(
+    booking_type: ['sale','rental'].sample,
     start_date: start,
     end_date: final,
     seen: seen,
@@ -77,7 +77,7 @@ end
   review = Review.new(
     rating: rand(0..10),
     content: Faker::Hipster.sentence,
-    transaction_id: booking.id,
+    booking_id: booking.id,
     user_id: user.id
     )
   review.save

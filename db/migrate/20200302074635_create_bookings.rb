@@ -6,7 +6,7 @@ class CreateBookings < ActiveRecord::Migration[5.2]
       t.datetime :end_date
       t.boolean :seen
       t.boolean :confirm
-      t.float :price
+      t.float :final_price
       t.references :user, foreign_key: true
       t.references :aircraft, foreign_key: true
 

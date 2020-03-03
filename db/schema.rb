@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_045515) do
+ActiveRecord::Schema.define(version: 2020_03_03_062244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,30 +30,30 @@ ActiveRecord::Schema.define(version: 2020_03_03_045515) do
     t.index ["user_id"], name: "index_aircrafts_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
-    t.text "content"
-    t.bigint "user_id"
-    t.bigint "transaction_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["transaction_id"], name: "index_reviews_on_transaction_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.string "transaction_type"
+  create_table "bookings", force: :cascade do |t|
+    t.string "booking_type"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean "seen", default: false
-    t.boolean "confirm", default: false
+    t.boolean "seen"
+    t.boolean "confirm"
     t.float "final_price"
     t.bigint "user_id"
     t.bigint "aircraft_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aircraft_id"], name: "index_transactions_on_aircraft_id"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
+    t.index ["aircraft_id"], name: "index_bookings_on_aircraft_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 2020_03_03_045515) do
   end
 
   add_foreign_key "aircrafts", "users"
-  add_foreign_key "reviews", "transactions"
+  add_foreign_key "bookings", "aircrafts"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
-  add_foreign_key "transactions", "aircrafts"
-  add_foreign_key "transactions", "users"
 end
