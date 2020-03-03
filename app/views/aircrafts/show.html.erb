@@ -40,10 +40,24 @@
     <div class="date-form" id='aircraft-booking-dates' data-unavailable="<%= @aircraft.unavailable_dates.to_json %>">
       <div class="flatpickr">
         <%# if current_user.id != @flat.user_id  %>
+
         <%= render 'form' %>
+
         <%# end %>
       </div>
     </div>
   </div>
+
+  <!-- Reviews -->
+
+  <% @aircraft.bookings.each do |booking| %>
+    <% booking.reviews.each do |review| %>
+      <p><%= review.content %></p>
+      <p id="stars"><% review.rating.times do  %>
+        <i class="fas fa-star"></i>
+      <% end %></p>
+    <% end %>
+  <% end %>
+
 </div>
 
