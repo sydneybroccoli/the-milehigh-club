@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :aircrafts do
     resources :bookings, only: [ :create, :new ]
-      resources :reviews, only: [ :create, :new ]
+    resources :reviews, only: [ :create, :new ]
   end
 end
 
