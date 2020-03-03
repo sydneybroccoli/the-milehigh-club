@@ -23,11 +23,16 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry-byebug'
+  # gem 'pry-byebug'
   gem 'pry-rails'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 3.8'
+
+  gem 'pry-byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
