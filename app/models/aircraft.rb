@@ -2,8 +2,11 @@
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
-  has_many_attached :photo
+  has_many_attached :photos
 
+
+
+  validates :photos, presence: true
   validates :make, presence: true
   validates :model, presence: true
   validates :location, presence: true
