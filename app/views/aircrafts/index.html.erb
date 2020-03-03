@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Featured</h1>
-  <div class="container mx-auto my-5 featured-wrapper">
+  <div class="container mx-auto featured-wrapper">
     <h3>Blah blah blah</h3>
   </div>
   <div class="container">
@@ -9,7 +9,11 @@
       <div class="col-md-4">
         <%= link_to aircraft_path(aircraft), class: "no-deco" do %>
         <div class="card-trip mb-4">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <%= cl_image_tag("aircraft.jpg",
+            width: 400,
+            height: 300,
+            crop: :fill ) %>
+          <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" /> -->
           <div class="card-trip-infos">
             <div>
               <h2><%= aircraft.make %></h2>

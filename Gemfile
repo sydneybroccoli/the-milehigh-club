@@ -3,6 +3,7 @@ ruby '2.6.5'
 
 gem 'devise'
 gem 'faker'
+gem 'cloudinary', '~> 1.12.0'
 
 gem 'bootsnap', require: false
 gem 'jbuilder', '~> 2.0'
@@ -20,6 +21,7 @@ gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'dotenv-rails'
 end
 
 group :development, :test do

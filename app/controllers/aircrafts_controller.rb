@@ -7,7 +7,9 @@ class AircraftsController < ApplicationController
 
   def show
     @aircraft = Aircraft.find(params[:id])
-    @transaction = Transaction.new
+    @booking = Booking.new
+
+    # @reviews = @aircraft.bookings.reviews
   end
 
   def new
