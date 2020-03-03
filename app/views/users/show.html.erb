@@ -12,7 +12,16 @@
   <div class="tab-content">
     <div id="account-info" class="tab-pane fade in text-center active">
       <h3>ACCOUNT INFORMATION</h3>
-      <p>EMAIL: <%= @user.email %></p>
+      <div class="current-info">
+        <p><%#= @user.photo.key %></p>
+        <p><%= @user.first_name %></p>
+        <p><%= @user.last_name %></p>
+        <p><%= @user.favorite %></p>
+        <p><%= @user.content %></p>
+        <p><%= @user.email %></p>
+      </div>
+
+      <%= render 'edit_account_form' %>
     </div>
 
     <div id="user-aircrafts" class="tab-pane text-center fade">
