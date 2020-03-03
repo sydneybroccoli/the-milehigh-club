@@ -1,0 +1,16 @@
+.button {
+  border-radius: 10px;
+  color:white;
+  font-weight: bold;
+  background-color:#0C7B93;
+  padding: 16px 24px;
+  text-decoration:none;
+  transition:0.2s;
+  letter-spacing: 1.2px;
+  &:hover {
+    text-decoration:none;
+    color:white;
+    background-color:#00A8CC;
+  }
+}
+
