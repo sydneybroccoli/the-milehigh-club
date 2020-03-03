@@ -41,8 +41,13 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <%= link_to "Search", root_path, class: "search-navbar" %>
         </form>
+        <% if current_user.nil? %>
+          <%= link_to "Login", new_user_session_path, class: "login-navbar"%>
+          <% else %>
+          <%= link_to "Logout", destroy_user_session_path, method: "DELETE" %>
+        <% end %>
       </div>
     </nav>
     <div class="main-content">
