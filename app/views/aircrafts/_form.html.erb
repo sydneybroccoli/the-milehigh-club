@@ -1,0 +1,12 @@
+<%= simple_form_for [@aircraft, @booking] do |f| %>
+  <%= f.input :booking_type,
+  placeholder: 'RENTAL',
+  readonly: true %>
+  <%= f.input :start_date,
+    as: :string,
+    type: :text %>
+  <%= f.input :end_date,
+    as: :string,
+    type: :text %>
+  <%= f.submit "FLY WITH ME ;)", class: "btn btn-primary" %>
+<% end %>

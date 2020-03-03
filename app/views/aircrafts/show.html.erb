@@ -37,16 +37,14 @@
     <div class="aircraft-details">
       <p>sdfs</p>
     </div>
-    <div class="date-form" id='aircraft-transaction-dates' data-unavailable="<%= @aircraft.unavailable_dates.to_json %>">
+    <div class="date-form" id='aircraft-booking-dates' data-unavailable="<%= @aircraft.unavailable_dates.to_json %>">
+      <div class="flatpickr">
         <%# if current_user.id != @flat.user_id  %>
-          <%= simple_form_for [@aircraft, @booking] do |f| %>
-            <%= f.label :booking_type %>
-            <%= f.text_field :booking_type %>
-            <%= f.input :start_date, as: :string, type: :text, id: "booking_start_date" %>
-            <%= f.input :end_date, as: :string, type: :text, id: "booking_end_date" %>
-            <%= f.submit "Book", class: "btn btn-primary" %>
-          <% end %>
+
+        <%= render 'form' %>
+
         <%# end %>
+      </div>
     </div>
   </div>
 

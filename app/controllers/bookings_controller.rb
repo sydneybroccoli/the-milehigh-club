@@ -19,7 +19,7 @@
     @booking.final_price = total_price
     @booking.booking_type = "rental"
     @booking.aircraft = Aircraft.find(params[:aircraft_id].to_i)
-    @booking.user = User.all.sample # Change ASAP after updating User model with Devise
+    @booking.user = current_user # Change ASAP after updating User model with Devise
     if @booking.save
       redirect_to aircrafts_path(@booking)
     else
