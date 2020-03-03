@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'pages#home'
-  resources :aircrafts, only: [:index, :show] do
-    resources :transactions, only: [ :create ]
+  resources :aircrafts do
+    resources :transactions, only: [ :create, :new ]
+
   end
 
   devise_for :users
