@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+  class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @review.booking = current_user.bookings.last
     if review.save
-      redirect_to user_aircraft_path(@review.bookings.aircraft)
+      redirect_to user_aircraft_path(@review.booking.aircraft)
     else
       render 'new'
     end
