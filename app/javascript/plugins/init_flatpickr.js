@@ -1,11 +1,11 @@
 // First we define two variables that are going to grab our inputs field. You can check the ids of the inputs with the Chrome inspector.
-const startDateInput = document.getElementById('transaction_start_date');
-const endDateInput = document.getElementById('transaction_end_date');
+const startDateInput = document.getElementById('booking_start_date');
+const endDateInput = document.getElementById('booking_end_date');
 
 // Check that the query selector id matches the one you put around your form.
 console.log('im in the file')
 if (startDateInput) {
-const unavailableDates = JSON.parse(document.querySelector('#aircraft-transaction-dates').dataset.unavailable)
+const unavailableDates = JSON.parse(document.querySelector('#aircraft-booking-dates').dataset.unavailable)
 endDateInput.disabled = true
 
 flatpickr(startDateInput, {
