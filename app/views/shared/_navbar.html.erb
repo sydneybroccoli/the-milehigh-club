@@ -49,14 +49,14 @@
           <li class="nav-item dropdown">
             <!-- IMAGE LINK NEEDS TO BE CHANGED!!! -->
             <% if current_user.photo.attached? %>
-              <%= cl_image_tag @user.photo.key,
+              <%= cl_image_tag current_user.photo.key,
                 class: "avatar dropdown-toggle",
                 id: "navbarDropdown",
                 data: { toggle: "dropdown" },
                 'aria-haspopup': true,
                 'aria-expanded': false %>
             <% else %>
-              <%= image_tag 'avatar.jpg',
+              <%= cl_image_tag 'avatar',
               class: "avatar dropdown-toggle",
                 id: "navbarDropdown",
                 data: { toggle: "dropdown" },
