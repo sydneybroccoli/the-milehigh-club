@@ -32,22 +32,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <%= simple_form_for @aircraft do |f| %>
-              <div class="aircraft-form-row">
-                <%= f.input :make, placeholder: 'make' %>
-                <%= f.input :model, placeholder: 'model' %>
-                <%= f.input :year, placeholder: 'year' %>
-              </div>
-              <div class="aircraft-form-row">
-                <%= f.input :price, placeholder: 'price' %>
-                <%= f.input :capacity, placeholder: 'Seats' %>
-                <%= f.input :hours, placeholder: 'hours' %>
-              </div>
-              <%= f.input :location, placeholder: 'location' %>
-              <%= f.input :description, as: :string, type: :text %>
-              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-              <%= f.submit "Add Aircraft", class: "btn btn-primary" %>
-              <% end %>
+              <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.new %>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -66,8 +51,14 @@
           <div class="row">
             <% @user.aircrafts.each do |aircraft| %>
               <div class="col-md-4">
+                <button class="edit-modal-btn" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalCenter">
+                Edit
+                </button>
+                <%= link_to 'delete', aircraft_path(aircraft), method: :DELETE %>
                 <%= link_to aircraft_path(aircraft), class: 'no-deco' do %>
                   <div class="card-trip mb-2">
+                    <div>
+                    </div>
                     <%= cl_image_tag aircraft.photos[0].key,
                       width: 400,
                       height: 300,
@@ -89,6 +80,31 @@
         </div>
       <% end %>
     </div>
+
+    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="editModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLongTitle">Edit Listing</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.first %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
 
     <div id="user-bookings" class="tab-pane fade text-center">
       <h3>YOUR BOOKINGS</h3>

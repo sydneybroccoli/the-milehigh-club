@@ -8,7 +8,6 @@ class AircraftsController < ApplicationController
   def show
     @aircraft = Aircraft.find(params[:id])
     @booking = Booking.new
-
     # @reviews = @aircraft.bookings.reviews
   end
 
@@ -28,16 +27,17 @@ class AircraftsController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
-    @aircraft.update
-    redirect_to user_aircraft_path(@aircraft)
+    @aircraft.update(aircraft_params)
+    redirect_to user_path(@aircraft.user)
   end
 
   def destroy
     @aircraft.destroy
-    redirect_to user_path(@user)
+    redirect_to user_path(@aircraft.user)
   end
 
   private
