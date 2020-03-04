@@ -8,9 +8,7 @@
         <%= link_to "Sign Up", new_user_registration_path,  class: "button" %>
       </div>
       <div class="py-3">
-        <% unless current_user %>
-
-        <% else %>
+        <% if current_user %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         <% end %>
       </div>
