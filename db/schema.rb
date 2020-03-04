@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_03_03_125756) do
-=======
-ActiveRecord::Schema.define(version: 2020_03_03_123117) do
->>>>>>> 67d894d8c0c6782563134c9ff2523321b6b0b319
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,12 +85,6 @@ ActiveRecord::Schema.define(version: 2020_03_03_123117) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-    t.string "first_name"
-    t.string "last_name"
-    t.text "content"
-    t.string "favorite"
-=======
     t.string "provider"
     t.string "uid"
     t.string "facebook_picture_url"
@@ -102,7 +92,8 @@ ActiveRecord::Schema.define(version: 2020_03_03_123117) do
     t.string "last_name"
     t.string "token"
     t.datetime "token_expiry"
->>>>>>> 67d894d8c0c6782563134c9ff2523321b6b0b319
+    t.text "content"
+    t.string "favorite"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
