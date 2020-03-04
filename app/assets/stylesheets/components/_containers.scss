@@ -5,8 +5,9 @@
 
 .featured-wrapper {
   margin-top: 24px;
+  background-size:cover;
+  background-position:center;
   height:300px;
-  background-color: grey;
   border-radius: 10px;
   padding:24px;
 }
@@ -48,4 +49,10 @@
   margin-top:24px;
   margin-top:24px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.photos {
+  display:flex;
+  margin-top:24px;
+  border-radius:10px;
 }
