@@ -1,33 +1,26 @@
-<div class="form-content">
-    <%= simple_form_for @user do |f| %>
-      <%= f.error_notification %>
+<div class="form-container">
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :photo, as: :file %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :favorite %>
+    <%= f.input :content %>
 
-      <div class="form-inputs">
-        <%= f.input :photo, as: :file %>
+    <%= f.input :email, required: true, autofocus: true %>
 
-        <%= f.input :first_name %>
-        <%= f.input :last_name %>
-        <%= f.input :favorite %>
-        <%= f.input :content %>
+    <%= f.input :password,
+                  hint: "leave it blank if you don't want to change it",
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password,
+                  hint: "we need your current password to confirm your changes",
+                  required: true,
+                  input_html: { autocomplete: "current-password" } %>
+    <%= f.submit %>
+  <% end %>
+</div>
 
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" }%>
-        <%= f.input :password,
-                    required: true,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" },
-                    label: 'New Password' %>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    input_html: { autocomplete: "new-password" } %>
-      </div>
 
-      <div class="form-actions text-center">
-        <%= f.button :submit,
-          "JOIN THE FUN",
-          class: 'btn btn-secondary' %>
-      </div>
-    <% end %>
-  </div>

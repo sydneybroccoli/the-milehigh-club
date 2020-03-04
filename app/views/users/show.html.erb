@@ -12,7 +12,7 @@
   <div class="tab-content">
     <div id="account-info" class="tab-pane fade in text-center active">
       <h3>ACCOUNT INFORMATION</h3>
-      <div class="current-info">
+      <div class="current-info border">
         <p><%#= @user.photo.key %></p>
         <p><%= @user.first_name %></p>
         <p><%= @user.last_name %></p>
@@ -21,8 +21,9 @@
         <p><%= @user.email %></p>
       </div>
 
-      <%= render 'edit_account_form' %>
-    </div>
+      <%= render 'edit_account_form', user: @user %>
+      <%#= link_to 'EDIT', edit_user_registration_path %>
+   </div>
 
     <div id="user-aircrafts" class="tab-pane text-center fade">
       <h3>YOUR AIRCRAFTS</h3>
@@ -42,24 +43,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
-              <%= simple_form_for @aircraft do |f| %>
-              <div class="aircraft-form-row">
-                <%= f.input :make, placeholder: 'make' %>
-                <%= f.input :model, placeholder: 'model' %>
-                <%= f.input :year, placeholder: 'year' %>
-              </div>
-              <div class="aircraft-form-row">
-                <%= f.input :price, placeholder: 'price' %>
-                <%= f.input :capacity, placeholder: 'Seats' %>
-                <%= f.input :hours, placeholder: 'hours' %>
-              </div>
-              <%= f.input :location, placeholder: 'location' %>
-              <%= f.input :description, as: :string, type: :text %>
-              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-              <%= f.submit "Add Aircraft", class: "btn btn-primary" %>
-              <% end %>
+              test
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
