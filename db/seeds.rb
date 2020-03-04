@@ -1,4 +1,5 @@
 require 'faker'
+require 'open-uri'
 
 puts 'Cleaning database...'
 Review.destroy_all
@@ -13,6 +14,8 @@ owners_array = []
 buyers_array = []
 bookings_array = []
 reviews_array = []
+
+
 
 5.times do
   username = Faker::Internet.username
@@ -35,9 +38,11 @@ reviews_array = []
       description: Faker::Vehicle.standard_specs.join,
       user_id: owner.id
     )
+    file = URI.open('https://dynaimage.cdn.cnn.com/cnn/q_auto,w_1100,c_fill,g_auto,h_619,ar_16:9/http%3A%2F%2Fcdn.cnn.com%2Fcnnnext%2Fdam%2Fassets%2F181030130218-easyjet-wright-electric.jpg')
+    aircraft.photos.attach(io: file, filename: 'cessna.jpg', content_type: 'image/jpg')
+    puts "hello"
     aircraft.save
     aircrafts_array << aircraft
-
   end
 end
 
