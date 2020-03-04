@@ -17,12 +17,19 @@ const initMapbox = () => {
     });
 
     const markers = JSON.parse(mapElement.dataset.markers);
-    markers.forEach((marker) => {
+    if(Array.isArray(markers)) {
+      markers.forEach((marker) => {
       new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(map);
     });
     fitMapToMarkers(map, markers);
+    } else {
+      new mapboxgl.Marker()
+        .setLngLat([ markers.lng, markers.lat ])
+        .addTo(map);
+        fitMapToMarkers(map, [markers]);
+    }
   }
 };
 

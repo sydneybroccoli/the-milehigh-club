@@ -1,0 +1,14 @@
+<ol>
+<h3>Congrats! You booked a <%= @booking.aircraft.make %>: <%= @booking.aircraft.model %></h3>
+<p>good choice!</p>
+<h4>Your booking details are as follows...</h4>
+<ul>
+  <% if @booking.booking_type == 'rental' %>
+    <li>You have a reservation from <%= @booking.start_date %> until... <%= @booking.start_date %></li>
+  <% else %>
+    <li>Congratulations on your purchase!</li>
+  <% end %>
+</ul>
+
+<%= link_to "return to details page", aircraft_path(@booking.aircraft) %>
+<%= link_to "return to user home page", user_path(@booking.user) %>

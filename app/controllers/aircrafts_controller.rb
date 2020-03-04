@@ -19,6 +19,11 @@ class AircraftsController < ApplicationController
     @aircraft = Aircraft.find(params[:id])
     @booking = Booking.new
     # @reviews = @aircraft.bookings.reviews
+    @marker = {
+        lat: @aircraft.latitude,
+        lng: @aircraft.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: @aircraft })
+      }
   end
 
   def new
@@ -42,7 +47,7 @@ class AircraftsController < ApplicationController
 
   def update
     @aircraft.update(aircraft_params)
-    redirect_to user_path(@aircraft.user)
+    redirect_to aircraft_path(@aircraft)
   end
 
   def destroy
