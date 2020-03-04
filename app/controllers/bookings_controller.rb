@@ -1,5 +1,9 @@
   class BookingsController < ApplicationController
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @booking = Booking.new
   end
@@ -19,9 +23,9 @@
     @booking.final_price = total_price
     @booking.booking_type = "rental"
     @booking.aircraft = Aircraft.find(params[:aircraft_id].to_i)
-    @booking.user = current_user # Change ASAP after updating User model with Devise
+    @booking.user = current_user
     if @booking.save
-      redirect_to aircrafts_path(@booking)
+      redirect_to aircraft_booking_path(@booking)
     else
       render 'new'
     end
