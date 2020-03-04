@@ -3,100 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title>The Mile High Club</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
+    <%= stylesheet_pack_tag 'map' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <%= link_to "Search", root_path, class: "search-navbar" %>
-        </form>
-        <% if current_user.nil? %>
-          <%= link_to "Login", new_user_session_path, class: "login-navbar"%>
-          <% else %>
-          <%= link_to "Logout", destroy_user_session_path, method: "DELETE" %>
-        <% end %>
-      </div>
-    </nav>
+    <%= render 'shared/navbar' %>
     <div class="main-content">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     <%= yield %>
     </div>
-    <div class="footer-wrapper">
-      <div class="container py-2">
-        <div class="footer-content">
-          <div>
-            <h5>heading</h5>
-            <ul>
-              <li><a href="">skhskljh</a></li>
-              <li><a href="">skhskljh</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5>heading</h5>
-            <ul>
-              <li><a href="">skhskljh</a></li>
-              <li><a href="">skhskljh</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5>heading</h5>
-            <ul>
-              <li><a href="">skhskljh</a></li>
-              <li><a href="">skhskljh</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-icons">
-          <div>
-            <p>skljlskjghsldgh</p>
-          </div>
-          <div>
-            <ul>
-              <a href=""><li><i class="fab fa-facebook-f"></i></li></a>
-              <a href=""><li><i class="fab fa-instagram"></i></li></a>
-              <a href=""><li><i class="fab fa-twitter"></i></li></a>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render 'shared/footer' %>
 
     <%= javascript_include_tag 'application' %>
 
     <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'map' %>
   </body>
 </html>

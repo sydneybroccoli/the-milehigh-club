@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
+gem 'omniauth-facebook', '~> 6.0'
+
 gem 'devise'
 # facebook authentication tool
 gem 'omniauth-facebook', '~> 6.0'
@@ -22,6 +24,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem "dotenv-rails"
 
 group :development do
   gem 'web-console', '>= 3.3.0'

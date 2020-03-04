@@ -2,7 +2,17 @@ class AircraftsController < ApplicationController
   before_action :set_aircraft, except: [:index, :new, :create]
 
   def index
-    @aircrafts = Aircraft.all
+    # @aircrafts = Aircraft.all
+
+    @aircrafts = Aircraft.geocoded #returns flats with coordinates
+
+    @markers = @aircrafts.map do |aircraft|
+      {
+        lat: aircraft.latitude,
+        lng: aircraft.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: aircraft })
+      }
+    end
   end
 
   def show
