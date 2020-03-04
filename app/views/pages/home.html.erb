@@ -7,6 +7,13 @@
         <%= link_to "Explore", aircrafts_path, class: "button" %>
         <%= link_to "Sign Up", new_user_registration_path,  class: "button" %>
       </div>
+      <div class="py-3">
+        <% unless current_user %>
+        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+        <% else %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

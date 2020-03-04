@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
+gem 'omniauth-facebook', '~> 6.0'
+
 gem 'devise'
 gem 'faker'
 gem 'cloudinary', '~> 1.12.0'
