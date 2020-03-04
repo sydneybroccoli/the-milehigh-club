@@ -22,13 +22,10 @@
       </div>
 
       <%= render 'edit_account_form', user: @user %>
-      <%#= link_to 'EDIT', edit_user_registration_path %>
    </div>
 
     <div id="user-aircrafts" class="tab-pane text-center fade">
       <h3>YOUR AIRCRAFTS</h3>
-
-      <%= link_to 'MAKE ONE NOW!', new_aircraft_path %>
 
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Add Listing
@@ -46,10 +43,6 @@
 
             <div class="modal-body">
               <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.new %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -104,11 +97,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.first %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.last %>
             </div>
           </div>
         </div>

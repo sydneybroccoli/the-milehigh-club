@@ -32,7 +32,7 @@ class AircraftsController < ApplicationController
 
   def update
     @aircraft.update(aircraft_params)
-    redirect_to user_path(@aircraft.user)
+    redirect_to aircraft_path(@aircraft)
   end
 
   def destroy
