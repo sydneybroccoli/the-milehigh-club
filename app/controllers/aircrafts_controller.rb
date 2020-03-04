@@ -11,6 +11,7 @@ class AircraftsController < ApplicationController
         lat: aircraft.latitude,
         lng: aircraft.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { aircraft: aircraft })
+        # image_url: helpers.asset_url('REPLACE_THIS_WITH_YOUR_IMAGE_IN_ASSETS')
       }
     end
   end
