@@ -4,8 +4,6 @@
   has_many :reviews, through: :bookings
   has_many_attached :photos
 
-
-
   validates :photos, presence: true
   validates :make, presence: true
   validates :model, presence: true
@@ -15,6 +13,9 @@
   validates :hours, presence: true
   validates :year, presence: true
   validates :description, presence: true
+
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
 
   def unavailable_dates
     bookings.pluck(:start_date, :end_date).map do |range|
