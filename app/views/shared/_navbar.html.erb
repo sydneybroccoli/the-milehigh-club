@@ -48,12 +48,21 @@
           </li>
           <li class="nav-item dropdown">
             <!-- IMAGE LINK NEEDS TO BE CHANGED!!! -->
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier",
-            class: "avatar dropdown-toggle",
-              id: "navbarDropdown",
-              data: { toggle: "dropdown" },
-              'aria-haspopup': true,
-              'aria-expanded': false %>
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key,
+                class: "avatar dropdown-toggle",
+                id: "navbarDropdown",
+                data: { toggle: "dropdown" },
+                'aria-haspopup': true,
+                'aria-expanded': false %>
+            <% else %>
+              <%= image_tag "app/assets/images/avatar.jpg",
+              class: "avatar dropdown-toggle",
+                id: "navbarDropdown",
+                data: { toggle: "dropdown" },
+                'aria-haspopup': true,
+                'aria-expanded': false %>
+            <% end %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <%= link_to "ACCOUNT INFORMATION",
                 user_path(current_user),
