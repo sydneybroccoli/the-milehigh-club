@@ -16,7 +16,7 @@
     start_date = Date.new(array_start_date[0].to_i, array_start_date[1].to_i, array_start_date[2].to_i)
     end_date = Date.new(array_end_date[0].to_i, array_end_date[1].to_i, array_end_date[2].to_i)
     aircraft = Aircraft.find(params[:aircraft_id].to_i)
-    aircraft_price = aircraft.price
+    aircraft_price = aircraft.unit_price
     number_of_days = (end_date - start_date).to_i
     total_price = aircraft_price * number_of_days
     @booking = Booking.new(start_date: start_date, end_date: end_date)

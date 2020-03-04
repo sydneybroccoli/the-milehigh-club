@@ -17,7 +17,7 @@
               <h2><%= aircraft.make %></h2>
               <p><%= aircraft.model %></p>
             </div>
-            <h2 class="card-trip-pricing"><%= "$#{aircraft.price}" %></h2>
+            <h2 class="card-trip-pricing"><%= "$#{aircraft.unit_price}" %></h2>
             <% if aircraft.user.photo.attached? %>
               <%= cl_image_tag aircraft.user.photo.key,
                 crop: :thumb,
