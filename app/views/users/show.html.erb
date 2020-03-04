@@ -18,8 +18,6 @@
     <div id="user-aircrafts" class="tab-pane text-center fade">
       <h3>YOUR AIRCRAFTS</h3>
 
-      <%= link_to 'MAKE ONE NOW!', new_aircraft_path %>
-
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Add Listing
       </button>
@@ -70,10 +68,10 @@
               <div class="col-md-4">
                 <%= link_to aircraft_path(aircraft), class: 'no-deco' do %>
                   <div class="card-trip mb-2">
-                    <%= cl_image_tag("aircraft.jpg",
+                    <%= cl_image_tag aircraft.photos[0].key,
                       width: 400,
                       height: 300,
-                      crop: :fill ) %>
+                      crop: :fill %>
                       <div class="card-trip-infos">
                         <div>
                           <h2><%= aircraft.make %></h2>
