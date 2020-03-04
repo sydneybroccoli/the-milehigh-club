@@ -4,6 +4,9 @@ ruby '2.6.5'
 gem 'omniauth-facebook', '~> 6.0'
 
 gem 'devise'
+# facebook authentication tool
+gem 'omniauth-facebook', '~> 6.0'
+
 gem 'faker'
 gem 'cloudinary', '~> 1.12.0'
 gem 'geocoder'
@@ -33,4 +36,6 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # necessary for facebook authentication DONOT remove.
+  gem 'dotenv-rails'
 end
