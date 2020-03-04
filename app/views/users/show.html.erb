@@ -80,7 +80,21 @@
                         </div>
 
                         <h2 class="card-trip-pricing"><%= "$#{aircraft.unit_price}" %></h2>
-                        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                        <% if aircraft.user.photo.attached? %>
+                          <%= cl_image_tag aircraft.user.photo.key,
+                            crop: :thumb,
+                            gravity: :face,
+                            height: 40,
+                            width: 40,
+                            class: "card-trip-user avatar-bordered" %>
+                        <% else %>
+                            <%= cl_image_tag 'avatar',
+                              crop: :thumb,
+                              gravity: :face,
+                              height: 40,
+                              width: 40,
+                              class: "card-trip-user avatar-bordered" %>
+                        <% end %>
                       </div>
                   </div>
                 <% end %>
@@ -136,7 +150,21 @@
                       </div>
 
                       <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.unit_price}" %></h2>
-                      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                      <% if booking.aircraft.user.photo.attached? %>
+                        <%= cl_image_tag aircraft.user.photo.key,
+                          crop: :thumb,
+                          gravity: :face,
+                          height: 40,
+                          width: 40,
+                          class: "card-trip-user avatar-bordered" %>
+                      <% else %>
+                          <%= cl_image_tag 'avatar',
+                            crop: :thumb,
+                            gravity: :face,
+                            height: 40,
+                            width: 40,
+                            class: "card-trip-user avatar-bordered" %>
+                      <% end %>
                     </div>
                     <div>
                       <p>TYPE: <%= booking.booking_type %></p>

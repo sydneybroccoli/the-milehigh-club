@@ -1,0 +1,15 @@
+<% if aircraft.user.photo.attached? %>
+  <%= cl_image_tag aircraft.user.photo.key,
+    crop: :thumb,
+    gravity: :face,
+    height: 40,
+    width: 40,
+    class: "card-trip-user avatar-bordered" %>
+<% else %>
+    <%= cl_image_tag 'avatar',
+      crop: :thumb,
+      gravity: :face,
+      height: 40,
+      width: 40,
+      class: "card-trip-user avatar-bordered" %>
+<% end %>
