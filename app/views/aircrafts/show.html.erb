@@ -4,11 +4,11 @@
     <h4>$<%= number_with_delimiter(@aircraft.price, :delimiter => ',') %> /day</h4>
   </div>
   <div class="photos">
-    < @aircraft.photos[1..-1].each do |photo| >
+    <% @aircraft.photos[1..-1].each do |photo| %>
       <div>
-        < cl_image_tag photo.key, width: 200, height: 200, crop: :fill >
+        <%= cl_image_path photo.key, width: 200, height: 200, crop: :fill %>
       </div>
-    < end >
+    <% end %>
   </div>
   <div class="details-date-form">
     <div class="aircraft-details">
