@@ -25,7 +25,7 @@
     @booking.aircraft = Aircraft.find(params[:aircraft_id].to_i)
     @booking.user = current_user
     if @booking.save
-      redirect_to aircraft_booking_path(@booking)
+      redirect_to user_path(current_user)
     else
       render 'new'
     end
