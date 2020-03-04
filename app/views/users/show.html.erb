@@ -73,6 +73,10 @@
                         <div>
                           <h2><%= aircraft.make %></h2>
                           <p><%= aircraft.model %></p>
+
+                          <% aircraft.bookings.each do |booking| %>
+                          <p>Booking from: <%= booking.start_date %></p>
+                          <% end %>
                         </div>
 
                         <h2 class="card-trip-pricing"><%= "$#{aircraft.price}" %></h2>
@@ -141,6 +145,9 @@
                       <p>SEEN? <%= booking.seen %></p>
                       <p>CONFIRMED? <%= booking.confirm %></p>
                       <p>FINAL PRICE: <%= booking.final_price %></p>
+                      <p><%= link_to "Cancel booking", booking_path(booking),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } %></p>
                     </div>
                   </div>
                 <% end %>
