@@ -1,8 +1,7 @@
 <div class="container">
   <!-- <div class="featured-wrapper" style="background-image:  radial-gradient(circle, rgba(63,94,251,0) 0%, rgba(0,0,0,0.7808857808857809) 100%), url(<cl_image_path @aircraft.photos[0].key >)"> -->
-    <h1><%= @aircraft.make %></h1>
-    <h3><%= @aircraft.model %></h3>
-    <h3><%= @aircraft.location %></h3>
+    <h1><%= @aircraft.year %> <%= @aircraft.make %> <%= @aircraft.model %></h1>
+    <h4>$<%= number_with_delimiter(@aircraft.price, :delimiter => ',') %> /day</h4>
   </div>
  <!--  <div class="photos">
     < @aircraft.photos[1..-1].each do |photo| >
@@ -32,7 +31,11 @@
       </div>
     </div>
   </div>
-
+  <div class="shadow-box">
+    <p><strong>Number of seats:</strong> <%= @aircraft.capacity %></p>
+    <p><strong>Total time:</strong> <%=  number_with_delimiter(@aircraft.hours, :delimiter => ',') %></p>
+    <p><strong>Description:</strong> <%= @aircraft.description %></p>
+  </div>
   <!-- Reviews -->
   <div class="shadow-box">
     <h3>Reviews</h3>
