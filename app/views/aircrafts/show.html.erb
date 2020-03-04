@@ -1,7 +1,7 @@
 <div class="container">
   <div class="featured-wrapper" style="background-image: url(<%= "#{cl_image_path @aircraft.photos[0].key}" %>) ">
     <h1><%= @aircraft.year %> <%= @aircraft.make %> <%= @aircraft.model %></h1>
-    <h4>$<%= number_with_delimiter(@aircraft.price, :delimiter => ',') %> /day</h4>
+    <h4>$<%= number_with_delimiter(@aircraft.unit_price, :delimiter => ',') %> /day</h4>
   </div>
   <div class="photos">
     <% @aircraft.photos[1..-1].each do |photo| %>

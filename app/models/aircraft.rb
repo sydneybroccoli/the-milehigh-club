@@ -8,7 +8,7 @@
   validates :make, presence: true
   validates :model, presence: true
   validates :location, presence: true
-  validates :price, presence: true
+  validates :unit_price, presence: true
   validates :capacity, presence: true
   validates :hours, presence: true
   validates :year, presence: true
