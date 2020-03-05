@@ -46,7 +46,25 @@
                     <p><%= aircraft.model %></p>
 
                     <% aircraft.bookings.each do |booking| %>
-                    <p>Booking from: <%= booking.start_date %></p>
+                      <% if booking.confirm %>
+                         <%= link_to 'Status: Booked!', booking_path(booking) %>
+                      <% elsif booking.nil? %>
+                          <p>No current bookings! Mark as booked?</p>
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :confirm, as: :boolean, checked_value: true, unchecked_value: false %>
+                            <%= f.button :submit %>
+                          <% end %>
+                      <% else %>
+                        <%= link_to 'Booking Request: View details', booking_path(booking) %>
+                          <!-- insert confirm booking function here -->
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :confirm, as: :boolean, checked_value: true, unchecked_value: false %>
+                            <%= f.button :submit %>
+                          <% end %>
+                          <p><%= link_to "Deny Booking Request", booking_path(booking),
+                                method: :delete,
+                                data: { confirm: "Are you sure?: THINK OF THE $$$$" } %></p>
+                      <% end %>
                     <% end %>
                   </div>
 
