@@ -31,7 +31,7 @@
     if @booking.save
       redirect_to user_path(current_user)
     else
-      render 'new'
+      render '/aircraft/show'
     end
   end
 
