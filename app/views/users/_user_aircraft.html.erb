@@ -56,15 +56,8 @@
                           <p>No current bookings! Mark as booked?</p>
                       <% else %>
                         <%= link_to 'Booking Request: View details', booking_path(booking) %>
-                          <%= simple_form_for booking do |f| %>
-                            <%= f.input :seen, as: :boolean, checked_value: true, unchecked_value: false %>
-                            <%= f.button :submit %>
-                          <% end %>
-                        <%= simple_form_for booking do |f| %>
-                            <%= f.input :confirm, as: :boolean, checked_value: true, unchecked_value: false %>
-                            <%= f.button :submit %>
-                        <% end %>
-                          <p><%= link_to "Deny Booking Request", booking_path(booking),
+                        <%= link_to 'Confirm Booking', booking_path(booking, booking: {confirm: true}), method: :patch, data: { confirm: "DO IT!"} %>
+                        <p><%= link_to "Deny Booking Request", booking_path(booking),
                                 method: :delete,
                                 data: { confirm: "Are you sure?: THINK OF THE $$$$" } %></p>
                       <% end %>

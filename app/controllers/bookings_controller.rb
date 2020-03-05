@@ -51,6 +51,6 @@
   private
 
   def booking_params
-    params.require(:booking).permit(:id, :start_date, :end_date, :confirm, :seen, :booking_type, :final_price, :user, :aircraft)
+    params.require(:booking).permit(:start_date, :end_date, :confirm, :seen, :booking_type, :final_price, :user, :aircraft)
   end
 end
