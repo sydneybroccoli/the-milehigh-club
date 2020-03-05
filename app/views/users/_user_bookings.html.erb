@@ -3,12 +3,8 @@
 </div>
 <% if user.bookings.count < 1 %>
 <div class="d-flex justify-content-center my-5">
-  <%= link_to 'MAKE ONE NOW!', aircrafts_path, class: "btn btn-primary" %>
+  <%= link_to 'Rent an Aircraft', aircrafts_path, class: "nav-custom grey" %>
 </div>
-<div class="d-flex justify-content-center my-5">
-  <p>sorry you don't have any bookings yet :(</p>
-</div>
-
 <% else %>
   <div class="container">
     <div class="row ">

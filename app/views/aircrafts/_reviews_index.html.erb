@@ -1,0 +1,12 @@
+<h3>Reviews</h3>
+<% if @aircraft.reviews.count > 0 %>
+  <% @aircraft.reviews.each do |review| %>
+    <p><%= review.created_at.strftime('%B %Y') %></p>
+    <p><%= review.content %></p>
+    <p id="stars"><% review.rating.times do  %>
+      <i class="fas fa-star"></i>
+    <% end %></p>
+  <% end %>
+<% else %>
+  <p>There are no reviews yet.</p>
+<% end %>

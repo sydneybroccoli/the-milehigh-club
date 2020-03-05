@@ -27,24 +27,24 @@
         <ul class="navbar-nav mr-auto">
           <% if current_user.nil? %>
             <li class="nav-item">
-              <%= link_to "ALL PLANES",
+              <%= link_to "VIEW PLANES",
                 aircrafts_path,
-                class: "nav-link" %>
+                class: "nav-custom white" %>
             </li>
             <li class='nav-item'>
               <div class="login align-right">
-                <%= link_to "Login", new_user_session_path, class: "login-navbar"%>
+                <%= link_to "Login", new_user_session_path, class: "nav-link nav-custom wnite"%>
               </div>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "ALL PLANES",
+              <%= link_to "VIEW PLANES",
                 aircrafts_path,
-                class: "nav-link" %>
+                class: "nav-link nav-custom white" %>
             </li>
             <li class='nav-item'>
               <div class="login align-right">
-                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "login-navbar"%>
+                <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: "nav-link nav-custom  white"%>
               </div>
             </li>
             <li class="nav-item dropdown">
