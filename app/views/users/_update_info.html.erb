@@ -1,23 +1,21 @@
-<h3>ACCOUNT INFORMATION</h3>
-<div class="current-info border">
+<div class="container d-flex justify-content-center my-3">
+  <h3>ACCOUNT INFORMATION</h3>
+</div>
+<div class="container my-3">
   <% if user.photo.attached? %>
+    <div class="my-3">
     <%= cl_image_tag user.photo.key %>
-    <p><%= user.first_name %></p>
-    <p><%= user.last_name %></p>
-    <p><%= user.favorite %></p>
-    <p><%= user.content %></p>
-    <p><%= user.email %></p>
+    </div>
+    <%= render 'user_details', user: user %>
   <% else %>
-    <p><%= user.first_name %></p>
-    <p><%= user.last_name %></p>
-    <p><%= user.favorite %></p>
-    <p><%= user.content %></p>
-    <p><%= user.email %></p>
+    <%= render 'user_details', user: user %>
   <% end %>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModalCenter">
-  Update User Info
-</button>
+<div class="d-flex justify-content-center my-5">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModalCenter">
+    Update User Info
+  </button>
+</div>
 
 <div class="modal fade" id="editUserModalCenter" tabindex="-1" role="dialog" aria-labelledby="editUserModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -28,10 +26,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
         <%= render 'edit_account_form', user: user %>
-
       </div>
     </div>
   </div>
