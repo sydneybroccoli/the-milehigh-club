@@ -23,8 +23,7 @@ class AircraftsController < ApplicationController
     @marker = {
         lat: @aircraft.latitude,
         lng: @aircraft.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: @aircraft }),
-        image_url: helpers.asset_url('mapMarker.png')
+        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: @aircraft })
       }
   end
 

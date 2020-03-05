@@ -1,2 +1,12 @@
-<h2><%= aircraft.make %><%= aircraft.model %></h2>
-<p><%= aircraft.location %></p>
+<%= link_to aircraft_path(aircraft), class: "no-deco" do %>
+  <div class="card-trip mb-4">
+    <%= cl_image_tag aircraft.photos[0].key %>
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= aircraft.year %> <%= aircraft.make %> <%= aircraft.model %></h2>
+        <p><%= aircraft.location %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+
