@@ -59,6 +59,22 @@
             </div>
           </div>
           <div class="user-details d-flex">
+            <% if @booking.user == current_user %>
+            <div class="user-details-heading">
+              <p>Owner Details</p>
+            </div>
+            <div>
+              <p><%= @booking.aircraft.user.email %></p>
+            </div>
+            <div>
+              <% if @booking.aircraft.user.photo.attached? %>
+              <%= cl_image_tag @booking.aircraft.user.photo.key %>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+          <div class="user-details d-flex">
+            <% if @booking.aircraft.user == current_user %>
             <div class="user-details-heading">
               <p>Renter Details</p>
             </div>
@@ -70,9 +86,9 @@
               <%= cl_image_tag @booking.user.photo.key %>
               <% end %>
             </div>
+            <% end %>
           </div>
         </div>
-          <p>Congratulations on your purchase!</p>
     </div>
   </div>
 </div>

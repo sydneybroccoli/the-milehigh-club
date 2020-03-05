@@ -44,12 +44,10 @@
                 <% end %>
               </div>
               <div>
-                <p>TYPE: <%= booking.booking_type %></p>
                 <p>START DATE: <%= booking.start_date %></p>
                 <p>END DATE: <%= booking.end_date %></p>
-                <p>SEEN? <%= booking.seen %></p>
                 <p>CONFIRMED? <%= booking.confirm %></p>
-                <p>FINAL PRICE: <%= booking.final_price %></p>
+                <p><%= link_to "view booking", booking_path(booking) %></p>
                 <p><%= link_to "Cancel booking", booking_path(booking),
                     method: :delete,
                     data: { confirm: "Are you sure?" } %></p>
