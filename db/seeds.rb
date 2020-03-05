@@ -183,6 +183,27 @@ AIRCRAFT_HASH = [
 #     public_id: "#{tmp[:make].gsub(' ', '-')}_#{tmp[:model].gsub(' ', '-')}" })
 # end
 
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_0.jpg',
+#   {public_id: 'avatar_0'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_1.jpg',
+#   {public_id: 'avatar_1'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_2.jpg',
+#   {public_id: 'avatar_2'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_3.jpg',
+#   {public_id: 'avatar_3'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_4.jpg',
+#   {public_id: 'avatar_4'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_5.jpg',
+#   {public_id: 'avatar_5'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_6.jpg',
+#   {public_id: 'avatar_6'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_7.jpg',
+#   {public_id: 'avatar_7'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_8.jpg',
+#   {public_id: 'avatar_8'})
+# Cloudinary::Uploader.upload('../app/assets/images/avatar_9.jpg',
+#   {public_id: 'avatar_9'})
+
 puts 'Cleaning database...'
 Review.destroy_all
 Booking.destroy_all
@@ -200,17 +221,27 @@ reviews_array = Array.new
 i = 0
 
 5.times do
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
   owner = User.new(
+    first_name: first,
+    last_name: last,
     password: 'password',
-    email: Faker::Internet.email
-  )
+    email: Faker::Internet.email(name: "#{first} #{last}", separators: '.')
+    )
+  num = rand(0..9)
+  file = URI.open("../app/assets/images/avatar_#{num}.jpg")
+    owner.photo.attach(io: file,
+      filename:("../app/assets/images/avatar_#{num}.jpg"),
+      content_type: 'image/jpg')
   owner.save
+  puts "  #{owner.first_name} #{owner.last_name} has created an account!"
   owners_array << owner
 
   4.times do
 
     tmp = AIRCRAFT_HASH.sample
-    puts "\tcreating a #{tmp[:make]} #{tmp[:model]}..."
+    # puts "\tcreating a #{tmp[:make]} #{tmp[:model]}..."
 
     aircraft = Aircraft.new(
       make: tmp[:make],
@@ -229,7 +260,7 @@ i = 0
       filename:("#{tmp[:make].gsub(' ', '-')}_#{tmp[:model].gsub(' ', '-')}.jpg"),
       content_type: 'image/jpg')
 
-    puts "\tseeding a #{tmp[:make]} #{tmp[:model]}..."
+    puts "\ta #{tmp[:make]} #{tmp[:model]} has been listed!"
 
     aircraft.save
     aircrafts_array << aircraft
@@ -241,12 +272,23 @@ i = 0
 end
 
 5.times do
-  username = Faker::Internet.username
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
   buyer = User.new(
+    first_name: first,
+    last_name: last,
     password: 'password',
-    email: Faker::Internet.email(name: username)
+    email: Faker::Internet.email(name: "#{first} #{last}", separators: '.')
   )
+  num = rand(0..9)
+  file = URI.open("../app/assets/images/avatar_#{num}.jpg")
+    buyer.photo.attach(io: file,
+      filename:("../app/assets/images/avatar_#{num}.jpg"),
+      content_type: 'image/jpg')
+
   buyer.save
+  puts "  #{owner.first_name} #{owner.last_name} has created an account!"
+
   buyers_array << buyer
   seen = [true, false].sample
   if seen
@@ -269,6 +311,8 @@ end
     final_price: aircraft.unit_price * (final - start)
   )
   booking.save
+  puts "\ta booking has been made!"
+
   bookings_array << booking
 
   review = Review.new(
@@ -277,6 +321,8 @@ end
     booking_id: booking.id,
     )
   review.save
+  puts "\ta review has been added!"
+
   reviews_array << review
 
 
