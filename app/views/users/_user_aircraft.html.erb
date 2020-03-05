@@ -1,8 +1,11 @@
-<h3>YOUR AIRCRAFTS</h3>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-aircraft-form">
-  Add Listing
-</button>
+<div class="container d-flex justify-content-center my-3">
+  <h3>YOUR AIRCRAFTS</h3>
+</div>
+<div class="d-flex justify-content-center my-5">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-aircraft-form">
+    Add Listing
+  </button>
+</div>
 
 <div class="modal fade" id="new-aircraft-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -21,8 +24,9 @@
   </div>
 </div>
 <% if user.aircrafts.count < 1 %>
+<div class="d-flex justify-content-center my-5">
   <p>you dont have any aircrafts :(</p>
-
+</div>
 <% else %>
   <div class="container">
     <div class="row">
@@ -50,19 +54,16 @@
                          <%= link_to 'Status: Booked!', booking_path(booking) %>
                       <% elsif booking.nil? %>
                           <p>No current bookings! Mark as booked?</p>
-                          <%= simple_form_for booking do |f| %>
-                            <%= f.input :confirm, as: :boolean, checked_value: true, unchecked_value: false %>
-                            <%= f.button :submit %>
-                          <% end %>
                       <% else %>
                         <%= link_to 'Booking Request: View details', booking_path(booking) %>
                           <%= simple_form_for booking do |f| %>
                             <%= f.input :seen, as: :boolean, checked_value: true, unchecked_value: false %>
                             <%= f.button :submit %>
-                          <%= simple_form_for booking do |f| %>
+                          <% end %>
+                        <%= simple_form_for booking do |f| %>
                             <%= f.input :confirm, as: :boolean, checked_value: true, unchecked_value: false %>
                             <%= f.button :submit %>
-                          <% end %>
+                        <% end %>
                           <p><%= link_to "Deny Booking Request", booking_path(booking),
                                 method: :delete,
                                 data: { confirm: "Are you sure?: THINK OF THE $$$$" } %></p>
@@ -90,9 +91,6 @@
             </div>
           <% end %>
         </div>
-
-
-
     <div class="modal fade" id="edit-aircraft-form" tabindex="-1" role="dialog" aria-labelledby="editModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -108,8 +106,6 @@
           </div>
         </div>
       </div>
-
-
       <% end %>
     </div>
   </div>

@@ -1,7 +1,13 @@
-<h3>YOUR BOOKINGS</h3>
+<div class="container d-flex justify-content-center my-3">
+  <h3>YOUR BOOKINGS</h3>
+</div>
 <% if user.bookings.count < 1 %>
+<div class="d-flex justify-content-center my-5">
+  <%= link_to 'MAKE ONE NOW!', aircrafts_path, class: "btn btn-primary" %>
+</div>
+<div class="d-flex justify-content-center my-5">
   <p>sorry you don't have any bookings yet :(</p>
-  <%= link_to 'MAKE ONE NOW!', aircrafts_path %>
+</div>
 
 <% else %>
   <div class="container">
@@ -22,7 +28,7 @@
 
                 <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.unit_price}" %></h2>
                 <% if booking.aircraft.user.photo.attached? %>
-                  <%= cl_image_tag aircraft.user.photo.key,
+                  <%= cl_image_tag booking.aircraft.user.photo.key,
                     crop: :thumb,
                     gravity: :face,
                     height: 40,
