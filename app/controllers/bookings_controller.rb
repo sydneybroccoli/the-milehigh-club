@@ -8,6 +8,10 @@
     @booking = Booking.new
   end
 
+  def booking_days
+    days = @booking.end_date - @booking.start_date
+  end
+
   def create
     booking = params[:booking]
     array_start_date = params[:booking][:start_date].split("-")
@@ -31,6 +35,17 @@
     end
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+
+   def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to user_path(current_user)
+  end
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
@@ -40,6 +55,6 @@
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :confirm, :seen, :booking_type, :final_price, :user, :aircraft)
   end
 end

@@ -1,5 +1,5 @@
-<!-- <div class="container m-0 p-0 w-100"> -->
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon row">
+
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon w-100">
     <div class="search col-sm">
       <form class="form-inline">
         <div class="input-group">
@@ -26,11 +26,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <% if current_user.nil? %>
-  <!--           <li class="nav-item">
-              <%#= link_to "HOME",
-                root_path,
-                class: "nav-link" %>
-            </li> -->
             <li class="nav-item">
               <%= link_to "ALL PLANES",
                 aircrafts_path,
@@ -47,30 +42,24 @@
                 aircrafts_path,
                 class: "nav-link" %>
             </li>
+            <li class='nav-item'>
+              <div class="login align-right">
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "login-navbar"%>
+              </div>
+            </li>
             <li class="nav-item dropdown">
-              <!-- IMAGE LINK NEEDS TO BE CHANGED!!! -->
               <% if current_user.photo.attached? %>
-                <%= cl_image_tag current_user.photo.key,
-                  crop: :thumb,
-                  gravity: :face,
-                  height: 40,
-                  width: 40,
-                  class: "avatar dropdown-toggle",
-                  id: "navbarDropdown",
-                  data: { toggle: "dropdown" },
-                  'aria-haspopup': true,
-                  'aria-expanded': false %>
+                <%= link_to user_path(current_user) do %>
+                  <%= cl_image_tag current_user.photo.key, crop: :thumb, gravity: :face, height: 40, width: 40, class: "avatar" %>
+                <% end %>
               <% else %>
-              <%= cl_image_tag 'avatar',
-                crop: :thumb,
-                gravity: :face,
-                height: 40,
-                width: 40,
-                class: 'avatar dropdown-toggle',
-                id: 'navbarDropdown',
-                data: { toggle: 'dropdown' },
-                'aria-haspopup': true,
-                'aria-expanded': false %>
+                <%= link_to user_path(current_user) do %>
+                  <%= cl_image_tag 'avatar',
+                    crop: :thumb,
+                    gravity: :face,
+                    height: 40,
+                    width: 40, class: "avatar" %>
+                <% end %>
               <% end %>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <%= link_to "ACCOUNT INFORMATION",
@@ -86,79 +75,5 @@
         </ul>
       </div>
     </div>
-
-
-
   </div>
-<!-- </div> -->
 
-
-  <!--   <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
-
-
-
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <%#= link_to 'THE MILEHIGH CLUB',
-        root_path,
-        class: 'navbar-brand' %>
-
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse d-flex flex-column justify-content-between" id="navbarSupportedContent">
-
-        <div class="nav-links">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active text-center">
-              <%#= link_to 'HOME',
-                root_path,
-                class: 'nav-link' %>
-              <span class="sr-only">(current)</span>
-            </li>
-
-            <li class="nav-item text-center">
-              <%#= link_to 'ALL PLANES',
-                aircrafts_path,
-                class: 'nav-link' %>
-            </li>
-
-            <%# if !current_user.nil? %>
-              <li class="nav-item text-center">
-                <%#= link_to 'ACCOUNT INFORMATION',
-                  user_path(current_user),
-                  class: 'nav-link' %>
-              </li>
-            <%# end %>
-
-          </ul>
-        </div>
-
-        <div class="search-bar">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <%#= link_to "Search",
-              root_path,
-              class: "search-navbar" %>
-          </form>
-        </div>
-
-
-      </div>
-    </nav> -->
-
-  <!--         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li> -->

@@ -1,10 +1,12 @@
 <div class="form-container">
   <%= simple_form_for @user do |f| %>
     <%= f.input :photo, as: :file %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :favorite %>
-    <%= f.input :content %>
+    <div class="form-row d-flex">
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+    </div>
+    <%= f.input :favorite, label: 'Favourite Airframe' %>
+    <%= f.input :content, label: 'Bio' %>
 
     <%= f.input :email, required: true, autofocus: true %>
 
