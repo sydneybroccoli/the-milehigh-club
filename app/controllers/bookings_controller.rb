@@ -35,6 +35,7 @@
     @booking = Booking.find(params[:id])
   end
 
+
    def update
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
