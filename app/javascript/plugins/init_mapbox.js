@@ -25,10 +25,11 @@ const initMapbox = () => {
     // });
     fitMapToMarkers(map, markers);
     } else {
-      new mapboxgl.Marker()
-        .setLngLat([ markers.lng, markers.lat ])
-        .addTo(map);
-        fitMapToMarkers(map, [markers]);
+
+    addMarkersToMap(map, [markers])
+
+    fitMapToMarkers(map, [markers]);
+
     }
   }
 };
