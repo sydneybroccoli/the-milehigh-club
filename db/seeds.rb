@@ -31,7 +31,7 @@ reviews_array = []
       make: Faker::Vehicle.make,
       model: Faker::Vehicle.model,
       location: Faker::Address.time_zone,
-      price: rand(1_000_000..10_000_000),
+      unit_price: rand(1_000_000..10_000_000),
       capacity: rand(100..500),
       hours: Faker::Vehicle.mileage.to_i,
       year: Faker::Vehicle.year.to_i,
@@ -72,7 +72,7 @@ end
     confirm: confirm,
     user_id: buyer.id,
     aircraft_id: aircraft.id,
-    final_price: aircraft.price * (final - start)
+    final_price: aircraft.unit_price * (final - start)
   )
   booking.save
   bookings_array << booking
