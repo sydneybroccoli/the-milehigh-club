@@ -56,7 +56,9 @@
                           <% end %>
                       <% else %>
                         <%= link_to 'Booking Request: View details', booking_path(booking) %>
-                          <!-- insert confirm booking function here -->
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :seen, as: :boolean, checked_value: true, unchecked_value: false %>
+                            <%= f.button :submit %>
                           <%= simple_form_for booking do |f| %>
                             <%= f.input :confirm, as: :boolean, checked_value: true, unchecked_value: false %>
                             <%= f.button :submit %>
