@@ -73,10 +73,28 @@
                         <div>
                           <h2><%= aircraft.make %></h2>
                           <p><%= aircraft.model %></p>
+
+                          <% aircraft.bookings.each do |booking| %>
+                          <p>Booking from: <%= booking.start_date %></p>
+                          <% end %>
                         </div>
 
-                        <h2 class="card-trip-pricing"><%= "$#{aircraft.price}" %></h2>
-                        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                        <h2 class="card-trip-pricing"><%= "$#{aircraft.unit_price}" %></h2>
+                        <% if aircraft.user.photo.attached? %>
+                          <%= cl_image_tag aircraft.user.photo.key,
+                            crop: :thumb,
+                            gravity: :face,
+                            height: 40,
+                            width: 40,
+                            class: "card-trip-user avatar-bordered" %>
+                        <% else %>
+                            <%= cl_image_tag 'avatar',
+                              crop: :thumb,
+                              gravity: :face,
+                              height: 40,
+                              width: 40,
+                              class: "card-trip-user avatar-bordered" %>
+                        <% end %>
                       </div>
                   </div>
                 <% end %>
@@ -131,8 +149,22 @@
                         <p><%= booking.aircraft.model %></p>
                       </div>
 
-                      <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.price}" %></h2>
-                      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                      <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.unit_price}" %></h2>
+                      <% if booking.aircraft.user.photo.attached? %>
+                        <%= cl_image_tag aircraft.user.photo.key,
+                          crop: :thumb,
+                          gravity: :face,
+                          height: 40,
+                          width: 40,
+                          class: "card-trip-user avatar-bordered" %>
+                      <% else %>
+                          <%= cl_image_tag 'avatar',
+                            crop: :thumb,
+                            gravity: :face,
+                            height: 40,
+                            width: 40,
+                            class: "card-trip-user avatar-bordered" %>
+                      <% end %>
                     </div>
                     <div>
                       <p>TYPE: <%= booking.booking_type %></p>
@@ -141,6 +173,9 @@
                       <p>SEEN? <%= booking.seen %></p>
                       <p>CONFIRMED? <%= booking.confirm %></p>
                       <p>FINAL PRICE: <%= booking.final_price %></p>
+                      <p><%= link_to "Cancel booking", booking_path(booking),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } %></p>
                     </div>
                   </div>
                 <% end %>
