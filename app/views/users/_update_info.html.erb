@@ -1,0 +1,38 @@
+<h3>ACCOUNT INFORMATION</h3>
+<div class="current-info border">
+  <% if user.photo.attached? %>
+    <%= cl_image_tag user.photo.key %>
+    <p><%= user.first_name %></p>
+    <p><%= user.last_name %></p>
+    <p><%= user.favorite %></p>
+    <p><%= user.content %></p>
+    <p><%= user.email %></p>
+  <% else %>
+    <p><%= user.first_name %></p>
+    <p><%= user.last_name %></p>
+    <p><%= user.favorite %></p>
+    <p><%= user.content %></p>
+    <p><%= user.email %></p>
+  <% end %>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModalCenter">
+  Update User Info
+</button>
+
+<div class="modal fade" id="editUserModalCenter" tabindex="-1" role="dialog" aria-labelledby="editUserModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Update Personal Infomation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <%= render 'edit_account_form', user: user %>
+
+      </div>
+    </div>
+  </div>
+</div>

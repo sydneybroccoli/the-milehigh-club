@@ -1,192 +1,33 @@
-<div class="user-welcome container">
+
+  <div class="user-welcome container">
   <h2>WELCOME <%= @user.email %></h2>
 </div>
 
-<div class="user-nav container">
-  <ul class="nav nav-tabs nav-fill nav-justified mb-3">
-    <li class="nav-item active"><a data-toggle="tab" href="#account-info">ACCOUNT INFORMATION</a></li>
-    <li class="nav-item"><a data-toggle="tab" href="#user-aircrafts">YOUR AIRCRAFTS</a></li>
-    <li class="nav-item"><a data-toggle="tab" href="#user-bookings">YOUR BOOKINGS</a></li>
-  </ul>
 
-  <div class="tab-content">
-    <div id="account-info" class="tab-pane fade in text-center active">
-      <h3>ACCOUNT INFORMATION</h3>
-      <div class="current-info border">
-        <p><%#= @user.photo.key %></p>
-        <p><%= @user.first_name %></p>
-        <p><%= @user.last_name %></p>
-        <p><%= @user.favorite %></p>
-        <p><%= @user.content %></p>
-        <p><%= @user.email %></p>
-      </div>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Account info</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <%= render 'update_info', user: @user %>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <%= render 'user_aircraft', user: @user %>
+  </div>
 
-      <%= render 'edit_account_form', user: @user %>
-   </div>
-
-    <div id="user-aircrafts" class="tab-pane text-center fade">
-      <h3>YOUR AIRCRAFTS</h3>
-
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Add Listing
-      </button>
-
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Add New Listing</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-              <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.new %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <% if @user.aircrafts.count < 1 %>
-        <p>you dont have any aircrafts :(</p>
-
-      <% else %>
-        <div class="container">
-          <div class="row">
-            <% @user.aircrafts.each do |aircraft| %>
-              <div class="col-md-4">
-                <button class="edit-modal-btn" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalCenter">
-                Edit
-                </button>
-                <%= link_to 'delete', aircraft_path(aircraft), method: :DELETE %>
-                <%= link_to aircraft_path(aircraft), class: 'no-deco' do %>
-                  <div class="card-trip mb-2">
-                    <div>
-                    </div>
-                    <%= cl_image_tag aircraft.photos[0].key,
-                      width: 400,
-                      height: 300,
-                      crop: :fill %>
-                      <div class="card-trip-infos">
-                        <div>
-                          <h2><%= aircraft.make %></h2>
-                          <p><%= aircraft.model %></p>
-
-                          <% aircraft.bookings.each do |booking| %>
-                          <p>Booking from: <%= booking.start_date %></p>
-                          <% end %>
-                        </div>
-
-                        <h2 class="card-trip-pricing"><%= "$#{aircraft.unit_price}" %></h2>
-                        <% if aircraft.user.photo.attached? %>
-                          <%= cl_image_tag aircraft.user.photo.key,
-                            crop: :thumb,
-                            gravity: :face,
-                            height: 40,
-                            width: 40,
-                            class: "card-trip-user avatar-bordered" %>
-                        <% else %>
-                            <%= cl_image_tag 'avatar',
-                              crop: :thumb,
-                              gravity: :face,
-                              height: 40,
-                              width: 40,
-                              class: "card-trip-user avatar-bordered" %>
-                        <% end %>
-                      </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="editModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editModalLongTitle">Edit Listing</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= render 'aircrafts/aircraft_form', aircraft: Aircraft.last %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-    <div id="user-bookings" class="tab-pane fade text-center">
-      <h3>YOUR BOOKINGS</h3>
-      <% if @user.bookings.count < 1 %>
-        <p>sorry you don't have any bookings yet :(</p>
-        <%= link_to 'MAKE ONE NOW!', aircrafts_path %>
-
-      <% else %>
-        <div class="container">
-          <div class="row ">
-            <% @user.bookings.each do |booking| %>
-              <div class="col-md-4">
-                <%= link_to aircraft_path(booking.aircraft), class: "no-deco" do %>
-                  <div class="card-trip mb-4">
-                    <%= cl_image_tag("aircraft.jpg",
-                      width: 400,
-                      height: 300,
-                      crop: :fill ) %>
-                    <div class="card-trip-infos">
-                      <div>
-                        <h2><%= booking.aircraft.make %></h2>
-                        <p><%= booking.aircraft.model %></p>
-                      </div>
-
-                      <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.unit_price}" %></h2>
-                      <% if booking.aircraft.user.photo.attached? %>
-                        <%= cl_image_tag aircraft.user.photo.key,
-                          crop: :thumb,
-                          gravity: :face,
-                          height: 40,
-                          width: 40,
-                          class: "card-trip-user avatar-bordered" %>
-                      <% else %>
-                          <%= cl_image_tag 'avatar',
-                            crop: :thumb,
-                            gravity: :face,
-                            height: 40,
-                            width: 40,
-                            class: "card-trip-user avatar-bordered" %>
-                      <% end %>
-                    </div>
-                    <div>
-                      <p>TYPE: <%= booking.booking_type %></p>
-                      <p>START DATE: <%= booking.start_date %></p>
-                      <p>END DATE: <%= booking.end_date %></p>
-                      <p>SEEN? <%= booking.seen %></p>
-                      <p>CONFIRMED? <%= booking.confirm %></p>
-                      <p>FINAL PRICE: <%= booking.final_price %></p>
-                      <p><%= link_to "Cancel booking", booking_path(booking),
-                          method: :delete,
-                          data: { confirm: "Are you sure?" } %></p>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+    <%= render 'user_bookings', user: @user %>
   </div>
 </div>
+
 
 
 
