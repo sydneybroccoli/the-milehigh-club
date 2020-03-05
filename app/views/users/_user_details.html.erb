@@ -3,7 +3,7 @@
     <p>First Name:</p>
   </div>
   <div>
-    <% if user.first_name == "" %>
+    <% if user.first_name == "" || user.first_name.nil? %>
     <p>nil</p>
     <% else %>
       <p><%= user.first_name %></p>
@@ -15,7 +15,7 @@
     <p>Last Name:</p>
   </div>
   <div>
-    <% if user.last_name == "" %>
+    <% if user.last_name == "" || user.last_name.nil? %>
     <p>nil</p>
     <% else %>
       <p><%= user.last_name %></p>
@@ -27,7 +27,7 @@
     <p>Favourite Airframe:</p>
   </div>
   <div>
-    <% if user.favorite == "" %>
+    <% if user.favorite == "" || user.favorite.nil? %>
       <p>nil</p>
     <% else %>
       <p><%= user.favorite %></p>
@@ -39,7 +39,7 @@
     <p>Bio:</p>
   </div>
   <div>
-    <% if user.content == "" %>
+    <% if user.content == "" || user.content.nil? %>
     <p>nil</p>
     <% else %>
       <p><%= user.content %></p>
