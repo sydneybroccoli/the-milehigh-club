@@ -73,9 +73,13 @@
                         <div>
                           <h2><%= aircraft.make %></h2>
                           <p><%= aircraft.model %></p>
-
                           <% aircraft.bookings.each do |booking| %>
-                          <p>Booking from: <%= booking.start_date %></p>
+                            <% if booking.confirm %>
+                               <%= link_to 'Booking Confirmed: View details', booking_path(booking) %>
+                            <% else %>
+                              <%= link_to 'Booking Request: View details', booking_path(booking) %>
+                          <!-- insert confirm booking function here -->
+                            <% end %>
                           <% end %>
                         </div>
 
