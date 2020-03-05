@@ -22,11 +22,7 @@
     </div>
     <div class="date-form" id='aircraft-booking-dates' data-unavailable="<%= @aircraft.unavailable_dates.to_json %>">
       <div class="flatpickr">
-        <%# if current_user.id != @flat.user_id  %>
-
         <%= render 'form' %>
-<!-- sdfkjsdf -->
-        <%# end %>
       </div>
     </div>
   </div>
@@ -35,7 +31,6 @@
     <p><strong>Total time:</strong> <%=  number_with_delimiter(@aircraft.hours, :delimiter => ',') %></p>
     <p><strong>Description:</strong> <%= @aircraft.description %></p>
   </div>
-  <!-- Reviews -->
   <div class="shadow-box">
     <h3>Reviews</h3>
     <% if @aircraft.reviews.count > 0 %>
