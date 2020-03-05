@@ -1,8 +1,10 @@
 <div class="form-container">
   <%= simple_form_for @user do |f| %>
     <%= f.input :photo, as: :file %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
+    <div class="form-row d-flex">
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+    </div>
     <%= f.input :favorite %>
     <%= f.input :content %>
 
