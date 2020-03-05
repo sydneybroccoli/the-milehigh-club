@@ -229,11 +229,11 @@ i = 0
     password: 'password',
     email: Faker::Internet.email(name: "#{first} #{last}", separators: '.')
     )
-  num = rand(0..9)
-  file = URI.open("../app/assets/images/avatar_#{num}.jpg")
-    owner.photo.attach(io: file,
-      filename:("../app/assets/images/avatar_#{num}.jpg"),
-      content_type: 'image/jpg')
+  # num = rand(0..9)
+  # file = URI.open("../app/assets/images/avatar_#{num}.jpg")
+  #   owner.photo.attach(io: file,
+  #     filename:("../app/assets/images/avatar_#{num}.jpg"),
+  #     content_type: 'image/jpg')
   owner.save
   puts "  #{owner.first_name} #{owner.last_name} has created an account!"
   owners_array << owner
@@ -280,14 +280,14 @@ end
     password: 'password',
     email: Faker::Internet.email(name: "#{first} #{last}", separators: '.')
   )
-  num = rand(0..9)
-  file = URI.open("../app/assets/images/avatar_#{num}.jpg")
-    buyer.photo.attach(io: file,
-      filename:("../app/assets/images/avatar_#{num}.jpg"),
-      content_type: 'image/jpg')
+  # num = rand(0..9)
+  # file = URI.open("../app/assets/images/avatar_#{num}.jpg")
+  #   buyer.photo.attach(io: file,
+  #     filename:("../app/assets/images/avatar_#{num}.jpg"),
+  #     content_type: 'image/jpg')
 
   buyer.save
-  puts "  #{owner.first_name} #{owner.last_name} has created an account!"
+  puts "  #{buyer.first_name} #{buyer.last_name} has created an account!"
 
   buyers_array << buyer
   seen = [true, false].sample

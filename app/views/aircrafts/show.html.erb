@@ -27,23 +27,35 @@
     </div>
   </div>
   <div class="shadow-box">
-    <p><strong>Number of seats:</strong> <%= @aircraft.capacity %></p>
+    <div class="d-flex justify-content-between">
+      <div>
+        <p><strong>Number of seats:</strong> <%= @aircraft.capacity %></p>
+      </div>
+      <div>
+        <a href="#show_reviews" data-toggle="modal" data-target="#show_reviews">reviews</a>
+      </div>
+    </div>
     <p><strong>Total time:</strong> <%=  number_with_delimiter(@aircraft.hours, :delimiter => ',') %></p>
     <p><strong>Description:</strong> <%= @aircraft.description %></p>
   </div>
-  <div class="shadow-box">
-    <h3>Reviews</h3>
-    <% if @aircraft.reviews.count > 0 %>
-      <% @aircraft.reviews.each do |review| %>
-        <p><%= review.created_at.strftime('%B %Y') %></p>
-        <p><%= review.content %></p>
-        <p id="stars"><% review.rating.times do  %>
-          <i class="fas fa-star"></i>
-        <% end %></p>
-      <% end %>
-    <% else %>
-      <p>There are no reviews yet.</p>
-    <% end %>
+
+  <div class="modal fade" id="show_reviews" tabindex="-1" role="dialog" aria-labelledby="show_reviews" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Reviews</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'reviews_index' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
+
 
