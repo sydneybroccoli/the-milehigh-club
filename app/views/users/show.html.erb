@@ -137,7 +137,7 @@
           <div class="row ">
             <% @user.bookings.each do |booking| %>
               <div class="col-md-4">
-                <%= link_to aircraft_path(booking.aircraft), class: "no-deco" do %>
+                <%= link_to booking_path(booking), class: "no-deco" do %>
                   <div class="card-trip mb-4">
                     <%= cl_image_tag("aircraft.jpg",
                       width: 400,
