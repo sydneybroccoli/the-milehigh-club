@@ -31,6 +31,15 @@
     end
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+  end
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
@@ -40,6 +49,6 @@
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :confirm, :seen, :booking_type, :final_price, :user_id, :aircraft_id)
   end
 end
