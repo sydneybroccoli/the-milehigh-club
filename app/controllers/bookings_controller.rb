@@ -8,6 +8,10 @@
     @booking = Booking.new
   end
 
+  def booking_days
+    days = @booking.end_date - @booking.start_date
+  end
+
   def create
     booking = params[:booking]
     array_start_date = params[:booking][:start_date].split("-")
