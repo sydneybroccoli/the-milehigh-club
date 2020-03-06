@@ -1,16 +1,21 @@
   class ReviewsController < ApplicationController
 
   def new
-    @review = Review.new
-    @aircraft = Aircraft.find(params[:aircraft_id])
+    @booking = Booking.find(params[:booking_id])
+    @review = Review.new(booking: @booking)
+    @aircraft = @booking.aircraft
+    authorize @review
   end
 
   def create
+    @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
-    @aircraft = Aircraft.find(params[:aircraft_id])
+    @review.booking = @booking
+    @review.user = current_user
+    # @aircraft = @booking.aircraft
     authorize @review
-    if review.save
-      redirect_to user_aircraft_path(@review.booking.aircraft)
+    if @review.save
+      redirect_to aircraft_path(@booking.aircraft)
     else
       render 'new'
     end

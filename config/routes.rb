@@ -9,11 +9,11 @@ Rails.application.routes.draw do
 
   resources :aircrafts do
     resources :bookings, only: [ :create, :new ]
-    resources :reviews, only: [ :create, :new ]
   end
 
-  resources :bookings, only: [ :show,:edit, :update, :destroy ]
-
+  resources :bookings, only: [ :show,:edit, :update, :destroy ] do
+    resources :reviews, only: [ :create, :new ]
+  end
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
