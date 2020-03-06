@@ -221,7 +221,7 @@ PROFILE_HASH = [
 ]
 
 # #UPLOAD ALL IMAGES TO CLOUDINARY
-# #UNCOMMENT FOR FIRST USE THEN COMMENT OUT (TAKES FOREVER)
+# #SHOULD NOT NEED TO BE UNCOMMENTED
 # puts 'Uploading/Checking Cloudinary for images...'
 # AIRCRAFT_HASH.each do |tmp|
 #   Cloudinary::Uploader.upload(tmp[:source],
