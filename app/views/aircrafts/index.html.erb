@@ -1,8 +1,16 @@
-<div class="container">
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(assets/airplane.jpg)">
+  <div class="container">
+    <h1>Available Anywhere</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia at hic rem, ab ipsam ex magni dicta sed suscipit voluptatum fugit similique saepe in, quaerat odio, nihil illum reprehenderit quos!</p>
+  </div>
+</div>
+
+<div class="container mt-3">
   <div
     id="map"
     style="width: 100%;
-    height: 450px;"
+    height: 350px;"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   <div class="container">
