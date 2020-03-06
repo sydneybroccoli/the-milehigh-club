@@ -1,0 +1,50 @@
+<% if user.bookings.count < 1 %>
+<div class="d-flex justify-content-center my-5">
+  <%= link_to 'Rent an Aircraft', aircrafts_path, class: "nav-custom grey" %>
+</div>
+<% else %>
+
+  <div class="container">
+    <% user.bookings.each do |booking| %>
+    <div class="card-product">
+      <%= cl_image_tag booking.aircraft.photos[0].key %>
+      <div class="card-product-infos">
+        <div class="card-top-info">
+          <div>
+            <h3><%= booking.aircraft.make %></h3>
+            <h3><%= booking.aircraft.model %></h3>
+            <h2 class="booking-card-price"><%= "$#{booking.aircraft.unit_price}" %></h2>
+          </div>
+          <div >
+            <% days = (booking.end_date - booking.start_date)/86400 %>
+            <% cost = days * booking.aircraft.unit_price %>
+            <h4><%= "$#{cost}" %></h4>
+          </div>
+        </div>
+        <p>START DATE: <%= booking.start_date %></p>
+        <p>END DATE: <%= booking.end_date %></p>
+        <% if booking.confirm %>
+          <p>CONFIRMED</p>
+        <% else %>
+          <p style="color: red;"><em>UNCONFRIMED</em></p>
+        <% end %>
+        <div class="d-flex justify-content-between">
+          <div class="d-flex">
+            <div>
+              <p><%= link_to "view booking", booking_path(booking), class: "nav-link nav-custom grey" %></p>
+            </div>
+            <div>
+              <p><%= link_to "Cancel booking", booking_path(booking), class: "nav-link nav-custom grey",
+                method: :delete,
+                data: { confirm: "Are you sure?" } %></p>
+            </div>
+          </div>
+          <div>
+            <p><%= link_to "Add Review", new_aircraft_review_path(booking), class: "nav-link nav-custom grey" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% end %>
