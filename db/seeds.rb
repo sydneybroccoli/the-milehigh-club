@@ -284,7 +284,7 @@ i = 0
       make: tmp[:make],
       model: tmp[:model],
       location: Faker::Address.time_zone,
-      unit_price: rand(100..10_000),
+      unit_price: rand(100..1_000),
       capacity: tmp[:capacity],
       hours: Faker::Vehicle.mileage.to_i,
       year: tmp[:year],
