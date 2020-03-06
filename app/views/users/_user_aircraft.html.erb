@@ -31,71 +31,32 @@
 </div>
 <% else %>
   <div class="container">
-    <div class="row">
       <% user.aircrafts.each do |aircraft| %>
-        <div class="col-md-4">
-          <% if policy(aircraft).update? %>
-            <button class="edit-modal-btn" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-aircraft-form">
-            Edit
-            </button>
-          <% end %>
-          <% if policy(aircraft).destroy? %>
-            <%= link_to 'Destroy', aircraft, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-          <%= link_to aircraft_path(aircraft), class: 'no-deco' do %>
-            <div class="card-trip mb-2">
-              <div>
-              </div>
-              <%= cl_image_tag aircraft.photos[0].key,
-                width: 400,
-                height: 300,
-                crop: :fill %>
-                <div class="card-trip-infos">
-                  <div>
-                    <h2><%= aircraft.make %></h2>
-                    <p><%= aircraft.model %></p>
-
-                    <% aircraft.bookings.each do |booking| %>
-                      <% if booking.confirm %>
-                        <% if policy(booking).show? %>
-                          <%= link_to 'Status: Booked!', booking_path(booking) %>
-                        <% end %>
-                      <% elsif booking.nil? %>
-                          <p>No current bookings! Mark as booked?</p>
-                      <% else %>
-                        <% if policy(booking).show? %>
-                          <%= link_to 'Booking Request: View details', booking_path(booking) %>
-                        <% end %>
-                        <% if policy(booking).update? %>
-                          <%= link_to 'Confirm Booking', booking_path(booking, booking: {confirm: true}), method: :patch, data: { confirm: "DO IT!"} %>
-                        <% end %>
-                        <% if policy(booking).destroy? %>
-                          <p><%= link_to "Deny Booking Request", booking_path(booking),
-                                  method: :delete,
-                                  data: { confirm: "Are you sure?: THINK OF THE $$$$" } %></p>
-                        <% end %>
-                      <% end %>
-                    <% end %>
-                  </div>
-
+        <div class="card-product">
+          <%= cl_image_tag aircraft.photos[0].key %>
+            <div class="card-trip-infos p-4 flex-one">
+              <div class="card-top-info">
+                <div>
+                  <h3><%= aircraft.make %></h3>
+                  <h3><%= aircraft.model %></h3>
                   <h2 class="card-trip-pricing"><%= "$#{aircraft.unit_price}" %></h2>
-                  <% if aircraft.user.photo.attached? %>
-                    <%= cl_image_tag aircraft.user.photo.key,
-                      crop: :thumb,
-                      gravity: :face,
-                      height: 40,
-                      width: 40,
-                      class: "card-trip-user avatar-bordered" %>
-                  <% else %>
-                      <%= cl_image_tag 'avatar',
-                        crop: :thumb,
-                        gravity: :face,
-                        height: 40,
-                        width: 40,
-                        class: "card-trip-user avatar-bordered" %>
-                  <% end %>
                 </div>
-            </div>
+                <div>
+                  <% if policy(aircraft).destroy? %>
+                    <div class="d-flex">
+                    <%= link_to 'Destroy', aircraft, class: "nav-link nav-custom", method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                  <% if policy(aircraft).update? %>
+                    <button class="edit-modal-btn nav-link nav-custom" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-aircraft-form">
+                    Edit
+                    </button>
+                    </div>
+                  <% end %>
+                    </div>
+                  </div>
+                    <p><strong>Description</strong></p>
+                    <p><%= aircraft.description %></p>
+                </div>
           <% end %>
         </div>
     <div class="modal fade" id="edit-aircraft-form" tabindex="-1" role="dialog" aria-labelledby="editModalCenterTitle" aria-hidden="true">
@@ -116,5 +77,5 @@
       <% end %>
     </div>
   </div>
-<% end %>
+
 
