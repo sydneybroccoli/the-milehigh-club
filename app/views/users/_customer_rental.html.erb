@@ -15,38 +15,36 @@
             <h3><%= aircraft.model %></h3>
             <h2 class="booking-card-price"><%= "$#{aircraft.unit_price}" %></h2>
           </div>
-          <div >
+        </div>
             <% aircraft.bookings.each do |booking| %>
+            <div class="opacity">
+              <div>
+                <h2>Booking Detials</h2>
+                <p><%= booking.user.email %> - <%= booking.id %></p>
+              </div>
+
+            <div class="d-flex my-3">
               <% if booking.confirm %>
                 <% if policy(booking).show? %>
-                <div>
                   <%= link_to 'Status: Booked!', booking_path(booking), class: "nav-link nav-custom grey" %>
-                </div>
                 <% end %>
               <% elsif booking.nil? %>
-                <div>
-                  <p>No current bookings! Mark as booked?</p>
-                </div>
               <% else %>
                   <% if policy(booking).show? %>
-                <div>
-                    <%= link_to 'Booking Request: View details', booking_path(booking), class: "nav-link nav-custom grey" %>
-                </div>
+                    <%= link_to 'View details', booking_path(booking), class: "nav-link nav-custom grey" %>
                 <% end %>
                 <% if policy(booking).update? %>
-                  <%= link_to 'Confirm Booking', booking_path(booking, booking: {confirm: true}), method: :patch, data: { confirm: "DO IT!"} %>
+                  <%= link_to 'Confirm?', booking_path(booking, booking: {confirm: true}), class: "nav-link nav-custom grey", method: :patch, data: { confirm: "DO IT!"} %>
                 <% end %>
                 <% if policy(booking).destroy? %>
-                  <p><%= link_to "Deny Booking Request", booking_path(booking),
+                  <%= link_to "Delete Request", booking_path(booking), class: "nav-link nav-custom grey",
                           method: :delete,
-                          data: { confirm: "Are you sure?: THINK OF THE $$$$" } %></p>
+                          data: { confirm: "Confirm you would like to delete booking request" } %>
                 <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
-        <div class="d-flex justify-content-between">
-        </div>
+        <% end %>
       </div>
     </div>
     <% end %>
