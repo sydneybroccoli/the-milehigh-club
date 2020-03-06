@@ -1,5 +1,5 @@
 <h1>Review <%= @aircraft.make %></h1>
-<%= simple_form_for [@aircraft, @review] do |f| %>
+<%= simple_form_for [@booking, @review] do |f| %>
   <%= f.label :content %>
   <%= f.text_field :content %>
 

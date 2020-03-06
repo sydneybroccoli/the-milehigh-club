@@ -1,17 +1,21 @@
-<div class="container">
-  <div class="featured-wrapper" style="background-image: url(<%= "#{cl_image_path @aircraft.photos[0].key}" %>) ">
-    <h1><%= @aircraft.year %> <%= @aircraft.make %> <%= @aircraft.model %></h1>
-    <h4>$<%= number_with_delimiter(@aircraft.unit_price, :delimiter => ',') %> /day</h4>
-  </div>
-  <div class="photos">
-    <% @aircraft.photos[1..-1].each do |photo| %>
-      <div>
-        <%= cl_image_tag photo.key, width: 200, height: 200, crop: :fill %>
-      </div>
-    <% end %>
-  </div>
-  <div class="details-date-form">
-    <div class="aircraft-details">
+
+ <div class="container shadow-box border-radius-10 no-padding">
+    <div class="featured-wrapper p-4" style="background-image: url(<%= "#{cl_image_path @aircraft.photos[0].key}" %>) ">
+      <h1><%= @aircraft.year %> <%= @aircraft.make %> <%= @aircraft.model %></h1>
+      <h4>$<%= number_with_delimiter(@aircraft.unit_price, :delimiter => ',') %> /day</h4>
+    </div>
+    <div class="photos">
+      <% @aircraft.photos[1..-1].each do |photo| %>
+        <div>
+          <%= cl_image_tag photo.key, width: 200, height: 200, crop: :fill %>
+        </div>
+      <% end %>
+    </div>
+
+
+ <div class="p-4">
+  <div class="d-flex justify-content-center flex-wrap">
+    <div class="aircraft-details mr-4">
       <div
         id="map"
         style="width: 100%;
@@ -26,18 +30,20 @@
       </div>
     </div>
   </div>
-  <div class="shadow-box">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between mt-4 p-1">
       <div>
         <p><strong>Number of seats:</strong> <%= @aircraft.capacity %></p>
       </div>
       <div>
-        <a href="#show_reviews" data-toggle="modal" data-target="#show_reviews">reviews</a>
+        <a class="button" href="#show_reviews" data-toggle="modal" data-target="#show_reviews">reviews</a>
       </div>
     </div>
     <p><strong>Total time:</strong> <%=  number_with_delimiter(@aircraft.hours, :delimiter => ',') %></p>
     <p><strong>Description:</strong> <%= @aircraft.description %></p>
   </div>
+
+
+
 
   <div class="modal fade" id="show_reviews" tabindex="-1" role="dialog" aria-labelledby="show_reviews" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

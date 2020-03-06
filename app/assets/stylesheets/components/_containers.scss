@@ -8,8 +8,8 @@
   background-size:cover;
   background-position:center;
   height:300px;
-  border-radius: 10px;
-  padding:24px;
+  // border-radius: 10px;
+  // padding:24px;
 }
 
 .date-form {
@@ -29,25 +29,24 @@
   min-height:100%;
 }
 
-.details-date-form {
-  border-radius: 10px;
-  padding:24px;
-  margin-top:24px;
-  display:flex;
-  justify-content:space-between;
-  margin-top:24px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-
 .form-row {
   display:flex;
 }
 
-.shadow-box {
+
+.border-radius-10 {
   border-radius: 10px;
-  padding:24px;
-  margin-top:24px;
-  margin-top:24px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.shadow-box {
+  // border-radius: 10px;
+  // // padding:24px;
+  // // margin-top:24px;
+  // margin-top:24px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
