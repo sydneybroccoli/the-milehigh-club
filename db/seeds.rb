@@ -271,7 +271,7 @@ i = 0
       filename:("avatar_#{i}.jpg"),
       content_type: 'image/jpg')
 
-  owner.save
+  owner.save!
   puts "  #{owner.first_name} #{owner.last_name} has created an account!"
   owners_array << owner
 
@@ -298,7 +298,7 @@ i = 0
 
     puts "\ta #{tmp[:make]} #{tmp[:model]} has been listed!"
 
-    aircraft.save
+    aircraft.save!
     aircrafts_array << aircraft
 
     sleep(2.seconds)
@@ -307,7 +307,7 @@ i = 0
   end
 end
 
-5.times do
+aircrafts_array.each do |aircraft|
   first = Faker::Name.first_name
   last = Faker::Name.last_name
   buyer = User.new(
@@ -322,7 +322,7 @@ end
       filename:("avatar_#{i}.jpg"),
       content_type: 'image/jpg')
 
-  buyer.save
+  buyer.save!
   puts "  #{buyer.first_name} #{buyer.last_name} has created an account!"
 
   buyers_array << buyer
@@ -333,7 +333,6 @@ end
     confirm = false
   end
 
-  aircraft = aircrafts_array.sample
   start = Date.today
   final = Faker::Date.between(from: 30.days.from_now, to: Date.today)
   booking = Booking.new(
@@ -346,7 +345,7 @@ end
     aircraft_id: aircraft.id,
     final_price: aircraft.unit_price * (final - start)
   )
-  booking.save
+  booking.save!
   puts "\ta booking has been made!"
 
   bookings_array << booking
@@ -355,8 +354,9 @@ end
     rating: rand(0..10),
     content: Faker::Hipster.paragraph,
     booking_id: booking.id,
+    user_id: buyer.id
     )
-  review.save
+  review.save!
   puts "\ta review has been added!"
 
   reviews_array << review
