@@ -1,10 +1,26 @@
-<h1>Review <%= @aircraft.make %></h1>
-<%= simple_form_for [@aircraft, @review] do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
+<div class="container">
+  <div class="form-title text-center">
+    <h1>REVIEW</h1>
+    <h3><%= "#{@aircraft.make} #{@aircraft.model}" %></h3>
+    <p>$<%= @booking.final_price %> || <%= @booking.start_date.strftime("%A, %b %d") %> - <%= @booking.end_date.strftime("%A, %b %d") %></p>
+  </div>
 
-  <%= f.label :rating %>
-  <%= f.text_field :rating %>
+  <div class="form-container d-flex flex-column text-center">
+    <form>
+      <%= simple_form_for [@booking, @review] do |f| %>
+        <div class="form-group w-100">
+          <%= f.input :rating, collection: (0..10).to_a %>
+        </div>
+        <div class="form-group w-100">
+          <%= f.input :content, as: :text %>
+        </div>
+        <div class="form-group">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </form>
+  </div>
 
-  <%= f.submit %>
-<% end %>
+</div>
+
+

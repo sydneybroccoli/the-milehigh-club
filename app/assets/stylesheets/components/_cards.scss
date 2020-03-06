@@ -51,6 +51,7 @@
 .card-product {
   border-radius: 5px;
   overflow: hidden;
+  min-height:240px;
   height: 100%;
   margin-top:16px;
   margin-bottom:16px;
@@ -63,7 +64,6 @@
 .card-product img {
   height: 100%;
   width: 33%;
-  object-fit: cover;
 }
 
 .card-product h2 {
@@ -95,3 +95,16 @@
   min-height: 500px;
   max-height:100%;
 }
+
+.height {
+  height:250px;
+}
+
+.height img {
+  height:100%;
+}
+
+.flex-one {
+  flex:1;
+}
+

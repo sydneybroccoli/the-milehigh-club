@@ -24,11 +24,11 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem "dotenv-rails"
 gem 'pg_search', '~> 2.3.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'dotenv-rails'
 end
 
 group :development, :test do
@@ -40,3 +40,5 @@ group :development, :test do
   # necessary for facebook authentication DONOT remove.
   gem 'dotenv-rails'
 end
+
+gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
