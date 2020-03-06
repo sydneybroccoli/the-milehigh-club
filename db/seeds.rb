@@ -275,7 +275,7 @@ i = 0
   puts "  #{owner.first_name} #{owner.last_name} has created an account!"
   owners_array << owner
 
-  4.times do
+  rand(2..5).times do
 
     tmp = AIRCRAFT_HASH.sample
     # puts "\tcreating a #{tmp[:make]} #{tmp[:model]}..."
