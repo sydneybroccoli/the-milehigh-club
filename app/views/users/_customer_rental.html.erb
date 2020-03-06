@@ -1,0 +1,54 @@
+<% if user.aircrafts.count < 1 %>
+<div class="d-flex justify-content-center my-5">
+  <%= link_to 'Add an Aircraft', new_aircraft_path, class: "nav-custom grey" %>
+</div>
+<% else %>
+
+  <div class="container">
+    <% user.aircrafts.each do |aircraft| %>
+    <div class="card-product">
+      <%= cl_image_tag aircraft.photos[0].key %>
+      <div class="card-product-infos">
+        <div class="card-top-info">
+          <div>
+            <h3><%= aircraft.make %></h3>
+            <h3><%= aircraft.model %></h3>
+            <h2 class="booking-card-price"><%= "$#{aircraft.unit_price}" %></h2>
+          </div>
+          <div >
+            <% aircraft.bookings.each do |booking| %>
+              <% if booking.confirm %>
+                <% if policy(booking).show? %>
+                <div>
+                  <%= link_to 'Status: Booked!', booking_path(booking), class: "nav-link nav-custom grey" %>
+                </div>
+                <% end %>
+              <% elsif booking.nil? %>
+                <div>
+                  <p>No current bookings! Mark as booked?</p>
+                </div>
+              <% else %>
+                  <% if policy(booking).show? %>
+                <div>
+                    <%= link_to 'Booking Request: View details', booking_path(booking), class: "nav-link nav-custom grey" %>
+                </div>
+                <% end %>
+                <% if policy(booking).update? %>
+                  <%= link_to 'Confirm Booking', booking_path(booking, booking: {confirm: true}), method: :patch, data: { confirm: "DO IT!"} %>
+                <% end %>
+                <% if policy(booking).destroy? %>
+                  <p><%= link_to "Deny Booking Request", booking_path(booking),
+                          method: :delete,
+                          data: { confirm: "Are you sure?: THINK OF THE $$$$" } %></p>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% end %>
