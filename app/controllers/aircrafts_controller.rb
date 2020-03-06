@@ -2,15 +2,18 @@ class AircraftsController < ApplicationController
   before_action :set_aircraft, except: [:index, :new, :create]
 
   def index
-    # @aircrafts = Aircraft.all
 
-    @aircrafts = Aircraft.geocoded #returns flats with coordinates
-
+    if params[:query].present?
+      @aircrafts = Aircraft.search_by_make_and_model(params[:query])
+    else
+      @aircrafts = Aircraft.geocoded
+    end
     @markers = @aircrafts.map do |aircraft|
       {
         lat: aircraft.latitude,
         lng: aircraft.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: aircraft })
+        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: aircraft }),
+        image_url: helpers.asset_url('mapMarker.png')
       }
     end
   end
@@ -19,6 +22,12 @@ class AircraftsController < ApplicationController
     @aircraft = Aircraft.find(params[:id])
     @booking = Booking.new
     # @reviews = @aircraft.bookings.reviews
+    @marker = {
+        lat: @aircraft.latitude,
+        lng: @aircraft.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { aircraft: @aircraft }),
+        image_url: helpers.asset_url('mapMarker.png')
+      }
   end
 
   def new
@@ -42,7 +51,7 @@ class AircraftsController < ApplicationController
 
   def update
     @aircraft.update(aircraft_params)
-    redirect_to user_path(@aircraft.user)
+    redirect_to aircraft_path(@aircraft)
   end
 
   def destroy
@@ -57,6 +66,6 @@ class AircraftsController < ApplicationController
   end
 
   def aircraft_params
-    params.require(:aircraft).permit(:make, :model, :location, :price, :capacity, :hours, :year, :description, photos: [])
+    params.require(:aircraft).permit(:make, :model, :location, :unit_price, :capacity, :hours, :year, :description, photos: [])
   end
 end

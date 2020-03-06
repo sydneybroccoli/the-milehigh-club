@@ -1,0 +1,57 @@
+<div class="user-details border-bottom d-flex">
+  <div class="user-details-heading">
+    <p>First Name:</p>
+  </div>
+  <div>
+    <% if user.first_name == "" || user.first_name.nil? %>
+    <p>nil</p>
+    <% else %>
+      <p><%= user.first_name %></p>
+    <% end %>
+  </div>
+</div>
+<div class="user-details border-bottom d-flex">
+  <div class="user-details-heading">
+    <p>Last Name:</p>
+  </div>
+  <div>
+    <% if user.last_name == "" || user.last_name.nil? %>
+    <p>nil</p>
+    <% else %>
+      <p><%= user.last_name %></p>
+    <% end %>
+  </div>
+</div>
+<div class="user-details border-bottom d-flex">
+  <div class="user-details-heading">
+    <p>Favourite Airframe:</p>
+  </div>
+  <div>
+    <% if user.favorite == "" || user.favorite.nil? %>
+      <p>nil</p>
+    <% else %>
+      <p><%= user.favorite %></p>
+    <% end %>
+  </div>
+</div>
+<div class="user-details border-bottom d-flex">
+  <div class="user-details-heading">
+    <p>Bio:</p>
+  </div>
+  <div>
+    <% if user.content == "" || user.content.nil? %>
+    <p>nil</p>
+    <% else %>
+      <p><%= user.content %></p>
+    <% end %>
+  </div>
+</div>
+<div class="user-details border-bottom d-flex">
+  <div class="user-details-heading">
+    <p>Email:</p>
+  </div>
+  <div>
+    <p><%= user.email %></p>
+  </div>
+</div>
+

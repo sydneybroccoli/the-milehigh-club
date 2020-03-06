@@ -6,22 +6,19 @@
     <title>The Mile High Club</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_pack_tag 'map' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <div class="main-content">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+<!--       <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p> -->
     <%= yield %>
     </div>
     <%= render 'shared/footer' %>
-
     <%= javascript_include_tag 'application' %>
-
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'map' %>
   </body>
 </html>

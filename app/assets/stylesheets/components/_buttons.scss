@@ -1,16 +1,17 @@
 .button {
-  border-radius: 10px;
+  // border-radius: 10px;
   color:white;
   font-weight: bold;
-  background-color:#0C7B93;
-  padding: 16px 24px;
+  background-color:$leather;
+  padding: 10px 20px;
+  margin-right: 20px;
   text-decoration:none;
   transition:0.2s;
   letter-spacing: 1.2px;
   &:hover {
     text-decoration:none;
-    color:white;
-    background-color:#00A8CC;
+    color:black;
+    background-color:white;
   }
 }
 
@@ -34,7 +35,8 @@
   &:hover {
     text-decoration:none;
     color:black;
-    background-color: #0062CC;
+    // background-color: #0062CC;
+    opacity: 0.5;
   }
 }
 
@@ -62,3 +64,41 @@
   }
 }
 
+.nav-custom{
+  border-style: none;
+  background-color: #F4F4F4;
+  border-radius: 4px;
+  color:#6b6b6b;
+  padding: 10px 20px;
+  margin-right: 20px;
+  text-decoration: none;
+  transition: 0.1s;
+  letter-spacing: 1.2px;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.2);
+  &:hover {
+    text-decoration:none;
+    background-color: #AB987A;
+  }
+}
+
+.grey {
+  color:#6b6b6b;
+  &:hover {
+    color:white;
+  }
+}
+
+.white {
+  background-color: #FFFFFF;
+}
+
+.banner-btn {
+  color:white;
+  background-color:#AB987A;
+  font-weight:bold;
+  text-decoration:none;
+  &:hover {
+    color:black;
+    background-color:white;
+  }
+}

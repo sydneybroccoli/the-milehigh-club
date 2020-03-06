@@ -1,10 +1,17 @@
-  class Aircraft < ApplicationRecord
+class Aircraft < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
   has_many_attached :photos
 
-  # validates :photos, presence: true
+  include PgSearch::Model
+  pg_search_scope :search_by_make_and_model,
+    against: [ :make, :model ],
+    using: {
+      tsearch: { prefix: true }
+  }
+
+  validates :photos, presence: true
   validates :make, presence: true
   validates :model, presence: true
   validates :location, presence: true

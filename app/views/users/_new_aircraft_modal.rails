@@ -6,7 +6,7 @@
                 <%= f.input :year, placeholder: 'year' %>
               </div>
               <div class="aircraft-form-row">
-                <%= f.input :price, placeholder: 'price' %>
+                <%= f.input :unit_price, placeholder: 'unit_price' %>
                 <%= f.input :capacity, placeholder: 'Seats' %>
                 <%= f.input :hours, placeholder: 'hours' %>
               </div>
@@ -15,3 +15,4 @@
               <%= f.input :photos, as: :file, input_html: { multiple: true } %>
               <%= f.submit "Add Aircraft", class: "btn btn-primary" %>
 
+            <% end %>

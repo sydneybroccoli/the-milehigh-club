@@ -240,6 +240,7 @@ PROFILE_HASH = [
 #   i += 1
 # end
 
+
 puts 'Cleaning database...'
 Review.destroy_all
 Booking.destroy_all
@@ -269,6 +270,7 @@ i = 0
     owner.photo.attach(io: file,
       filename:("avatar_#{i}.jpg"),
       content_type: 'image/jpg')
+
   owner.save
   puts "  #{owner.first_name} #{owner.last_name} has created an account!"
   owners_array << owner
@@ -289,7 +291,6 @@ i = 0
       description: tmp[:description],
       user_id: owner.id
     )
-    # file = URI.open(tmp[:source])
     file = URI.open(tmp[:cloud])
     aircraft.photos.attach(io: file,
       filename:("#{tmp[:make].gsub(' ', '-')}_#{tmp[:model].gsub(' ', '-')}.jpg"),

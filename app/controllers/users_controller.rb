@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @aircraft = Aircraft.new
-
   end
 
   def edit

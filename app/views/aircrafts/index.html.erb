@@ -4,30 +4,35 @@
     style="width: 100%;
     height: 450px;"
     data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
-  <h1>Featured</h1>
-  <div class="container mx-auto featured-wrapper">
-    <h3>Blah blah blah</h3>
-  </div>
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   <div class="container">
     <div class="row ">
       <% @aircrafts.each do |aircraft| %>
       <div class="col-md-4">
         <%= link_to aircraft_path(aircraft), class: "no-deco" do %>
         <div class="card-trip mb-4">
-          <%= cl_image_tag("aircraft.jpg",
-            width: 400,
-            height: 300,
-            crop: :fill ) %>
-          <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" /> -->
+          <%= cl_image_tag aircraft.photos[0].key %>
           <div class="card-trip-infos">
             <div>
               <h2><%= aircraft.make %></h2>
               <p><%= aircraft.model %></p>
             </div>
-            <h2 class="card-trip-pricing"><%= "$#{aircraft.price}" %></h2>
-            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            <h2 class="card-trip-pricing"><%= "$#{aircraft.unit_price}" %></h2>
+            <% if aircraft.user.photo.attached? %>
+              <%= cl_image_tag aircraft.user.photo.key,
+                crop: :thumb,
+                gravity: :face,
+                height: 40,
+                width: 40,
+                class: "card-trip-user avatar-bordered" %>
+              <% else %>
+                <%= cl_image_tag 'avatar',
+                  crop: :thumb,
+                  gravity: :face,
+                  height: 40,
+                  width: 40,
+                  class: "card-trip-user avatar-bordered" %>
+              <% end %>
           </div>
         </div>
         <% end %>

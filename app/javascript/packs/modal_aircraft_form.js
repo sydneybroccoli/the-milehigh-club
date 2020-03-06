@@ -4,6 +4,7 @@ const updateEditModal = () => {
       buttons.forEach((button) => {
       button.addEventListener('click', (event) => {
         const id = event.currentTarget.dataset.id
+        console.log(id)
         document.querySelector('.edit_aircraft').action = `/aircrafts/${id}`
         const info = JSON.parse(event.currentTarget.dataset.info)
         const inputs = document.querySelectorAll('.edit_aircraft .form-control')

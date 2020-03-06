@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="featured-wrapper" style="background-image: url(<%= "#{cl_image_path @booking.aircraft.photos[0].key}" %>) ">
+    <h1><%= @booking.aircraft.year %> <%= @booking.aircraft.make %> <%= @booking.aircraft.model %></h1>
+    <h4>$<%= number_with_delimiter(@booking.aircraft.unit_price, :delimiter => ',') %> /day</h4>
+</div>
+<div class="photos">
+  <% @booking.aircraft.photos[1..-1].each do |photo| %>
+    <div>
+      <%= cl_image_tag photo.key, width: 200, height: 200, crop: :fill %>
+    </div>
+  <% end %>
+</div>
+  <div class="details-date-form">
+    <div class="aircraft-details">
+      <div
+        id="map"
+        style="width: 100%;
+        height: 300px;"
+        data-markers="<%= @marker.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+    </div>
+      <div class="container px-5">
+      <h3>Booking Details</h3>
+        <div>
+          <div class="user-details d-flex">
+            <div class="user-details-heading">
+              <p>Start Date</p>
+            </div>
+            <div>
+              <p><%= @booking.start_date %></p>
+            </div>
+          </div>
+          <div class="user-details d-flex">
+            <div class="user-details-heading">
+              <p>End Date</p>
+            </div>
+            <div>
+              <p><%= @booking.end_date %></p>
+            </div>
+          </div>
+          <div class="user-details d-flex">
+            <div class="user-details-heading">
+              <p>Total Days</p>
+            </div>
+              <% days = (@booking.end_date - @booking.start_date)/86400 %>
+              <% days = days.to_int %>
+            <div>
+              <p><%= days %></p>
+            </div>
+          </div>
+          <div class="user-details d-flex">
+            <div class="user-details-heading">
+              <p>Total Cost</p>
+            </div>
+            <% cost = days * @booking.aircraft.unit_price %>
+            <div>
+              <p><%= "$#{cost}" %></p>
+            </div>
+          </div>
+          <div class="user-details d-flex">
+            <% if @booking.user == current_user %>
+            <div class="user-details-heading">
+              <p>Owner Details</p>
+            </div>
+            <div>
+              <p><%= @booking.aircraft.user.email %></p>
+            </div>
+            <div>
+              <% if @booking.aircraft.user.photo.attached? %>
+              <%= cl_image_tag @booking.aircraft.user.photo.key %>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+          <div class="user-details d-flex">
+            <% if @booking.aircraft.user == current_user %>
+            <div class="user-details-heading">
+              <p>Renter Details</p>
+            </div>
+            <div>
+              <p><%= @booking.user.email %></p>
+            </div>
+            <div>
+              <% if @booking.user.photo.attached? %>
+              <%= cl_image_tag @booking.user.photo.key %>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to "return to details page", aircraft_path(@booking.aircraft) %>
+<%= link_to "return to user home page", user_path(@booking.user) %>
