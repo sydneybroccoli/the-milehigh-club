@@ -94,4 +94,6 @@
 </div>
 
 <%= link_to "return to details page", aircraft_path(@booking.aircraft) %>
+<% if policy(@booking).show? %>
 <%= link_to "return to user home page", user_path(@booking.user) %>
+<% end %>

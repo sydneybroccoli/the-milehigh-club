@@ -10,6 +10,7 @@
     @review = Review.new(review_params)
     # @review.booking = @booking
     @review.booking = current_user.bookings.last
+    authorize @review
     if review.save
       redirect_to user_aircraft_path(@review.booking.aircraft)
     else

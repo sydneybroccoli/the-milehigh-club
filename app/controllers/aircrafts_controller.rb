@@ -1,7 +1,11 @@
 class AircraftsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_aircraft, except: [:index, :new, :create]
 
   def index
+    @aircrafts = policy_scope(Aircraft.all)
+
+    @aircrafts = Aircraft.geocoded #returns flats with coordinates
 
     if params[:query].present?
       @aircrafts = Aircraft.search_by_make_and_model(params[:query])
@@ -33,11 +37,13 @@ class AircraftsController < ApplicationController
   def new
     @user = current_user
     @aircraft = Aircraft.new
+    authorize @aircraft
   end
 
   def create
     @aircraft = Aircraft.new(aircraft_params)
     @aircraft.user = current_user
+    authorize @aircraft
     if @aircraft.save
       redirect_to aircraft_path(@aircraft)
     else
@@ -55,14 +61,24 @@ class AircraftsController < ApplicationController
   end
 
   def destroy
-    @aircraft.destroy
-    redirect_to user_path(@aircraft.user)
+    if @aircraft.bookings.nil?
+      @aircraft.destroy
+      redirect_to user_path(current_user)
+    else
+      @aircraft.bookings.each do |booking|
+        booking.destroy
+      end
+      @aircraft.destroy
+      redirect_to user_path(current_user)
+    end
+
   end
 
   private
 
   def set_aircraft
     @aircraft = Aircraft.find(params[:id])
+    authorize @aircraft
   end
 
   def aircraft_params
