@@ -1,3 +1,4 @@
+
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-inputs">
       <%= f.input :email,
@@ -7,26 +8,27 @@
       <%= f.input :password,
                   required: false,
                   input_html: { autocomplete: "current-password" } %>
-    <div class="forgot-password text-center">
-      <%= link_to "FORGOT YOUR PASSWORD?",
-        new_password_path(resource_name),
-        class: 'text-center' %>
-    </div>
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-    </div>
+      <div class="forgot-password text-center">
+        <%= link_to "FORGOT YOUR PASSWORD?",
+          new_password_path(resource_name),
+          class: 'text-center' %>
+      </div>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-    <div class="form-actions text-center">
-      <%= f.button :submit,
-          "LETS FLY",
-          class: 'btn btn-secondary' %>
-    </div>
-    <br>
-    <div class="social-login text-center">
-      <%- resource_class.omniauth_providers.each do |provider| %>
-        <%= link_to "SIGN IN W/ #{OmniAuth::Utils.camelize(provider).upcase}",
-        omniauth_authorize_path(resource_name, provider),
-        class: 'btn btn-primary' %><br />
-      <% end %>
+      <div class="form-actions text-center">
+        <%= f.button :submit,
+            "LETS FLY",
+            class: 'btn btn-secondary' %>
+      </div>
+      <br>
+      <div class="social-login text-center">
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to "SIGN IN W/ #{OmniAuth::Utils.camelize(provider).upcase}",
+          omniauth_authorize_path(resource_name, provider),
+          class: 'btn btn-primary' %><br />
+        <% end %>
+      </div>
     </div>
   <% end %>
-</div>
+
