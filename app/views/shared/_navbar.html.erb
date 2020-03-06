@@ -4,9 +4,15 @@
       <form class="form-inline">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><%= icon('fas', 'search') %></span>
+          <%= form_tag aircrafts_path, method: :get do %>
+          <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Find an aircraft"
+          %>
+          <%= submit_tag "SEARCH", class: "nav-link nav-custom grey" %>
+          <% end %>
           </div>
-          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
         </div>
       </form>
     </div>
@@ -25,26 +31,21 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <% if current_user.nil? %>
             <li class="nav-item">
               <%= link_to "VIEW PLANES",
                 aircrafts_path,
-                class: "nav-custom white" %>
+                class: "nav-custom grey" %>
             </li>
+          <% if current_user.nil? %>
             <li class='nav-item'>
               <div class="login align-right">
-                <%= link_to "Login", new_user_session_path, class: "nav-link nav-custom wnite"%>
+                <%= link_to "LOGIN", new_user_session_path, class: "nav-custom grey"%>
               </div>
             </li>
           <% else %>
-            <li class="nav-item">
-              <%= link_to "VIEW PLANES",
-                aircrafts_path,
-                class: "nav-link nav-custom white" %>
-            </li>
             <li class='nav-item'>
               <div class="login align-right">
-                <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: "nav-link nav-custom  white"%>
+                <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: "nav-custom grey"%>
               </div>
             </li>
             <li class="nav-item dropdown">

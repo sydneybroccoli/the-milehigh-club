@@ -67,6 +67,7 @@
 .nav-custom{
   border-style: none;
   background-color: #F4F4F4;
+  border-radius: 4px;
   color:#6b6b6b;
   padding: 10px 20px;
   margin-right: 20px;
@@ -89,4 +90,15 @@
 
 .white {
   background-color: #FFFFFF;
+}
+
+.banner-btn {
+  color:white;
+  background-color:#AB987A;
+  font-weight:bold;
+  text-decoration:none;
+  &:hover {
+    color:black;
+    background-color:white;
+  }
 }

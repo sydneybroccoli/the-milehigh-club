@@ -7,6 +7,11 @@ class AircraftsController < ApplicationController
 
     @aircrafts = Aircraft.geocoded #returns flats with coordinates
 
+    if params[:query].present?
+      @aircrafts = Aircraft.search_by_make_and_model(params[:query])
+    else
+      @aircrafts = Aircraft.geocoded
+    end
     @markers = @aircrafts.map do |aircraft|
       {
         lat: aircraft.latitude,
