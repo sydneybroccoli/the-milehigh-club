@@ -102,3 +102,20 @@
     background-color:white;
   }
 }
+
+.nav-link {
+  background-color: $leather;
+  color: white;
+  margin: 0 10px;
+  opacity: 0.7;
+}
+
+.nav-pills .nav-link.active,
+.nav-link:hover,
+.nav-pills .show > .nav-link {
+  background-color: $leather;
+  opacity: 1;
+  color: white;
+}
+
+
