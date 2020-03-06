@@ -31,12 +31,16 @@
         <div class="d-flex justify-content-between">
           <div class="d-flex">
             <div>
+              <% if policy(booking).show? %>
               <p><%= link_to "view booking", booking_path(booking), class: "nav-link nav-custom grey" %></p>
+              <% end %>
             </div>
             <div>
+              <% if policy(booking).destroy? %>
               <p><%= link_to "Cancel booking", booking_path(booking), class: "nav-link nav-custom grey",
                 method: :delete,
                 data: { confirm: "Are you sure?" } %></p>
+                <% end %>
             </div>
           </div>
           <div>
