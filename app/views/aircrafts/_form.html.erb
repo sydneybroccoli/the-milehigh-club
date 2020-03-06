@@ -1,7 +1,7 @@
 <%= simple_form_for [@aircraft, @booking] do |f| %>
   <%= f.input :booking_type,
   placeholder: 'RENTAL',
-  readonly: true %>
+  readonly: true, :as => :hidden %>
   <%= f.input :start_date,
     as: :string,
     type: :text %>

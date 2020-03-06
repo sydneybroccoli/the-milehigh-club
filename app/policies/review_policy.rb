@@ -1,5 +1,9 @@
 class ReviewPolicy < ApplicationPolicy
-  def create
+  def create?
     record.user == user
+  end
+
+  def new?
+    record.booking.user == user
   end
 end
