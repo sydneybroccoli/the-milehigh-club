@@ -299,9 +299,11 @@ i = 0
     puts "\ta #{tmp[:make]} #{tmp[:model]} has been listed!"
 
     aircraft.save!
+    puts "\t\tchecking location..."
     until aircraft.geocoded?
       aircraft[:location] = Faker::Address.time_zone
     end
+    puts "\t\tlocation good!"
     aircraft.save!
 
     aircrafts_array << aircraft
