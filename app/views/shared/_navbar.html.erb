@@ -1,16 +1,19 @@
 
   <div class="navbar navbar-expand-sm navbar-dark navbar-lewagon w-100">
-    <div class="search col-sm">
+    <div class="search col-sm d-flex justify-content-start">
       <form class="form-inline">
         <div class="input-group">
-          <div class="input-group-prepend">
+          <div class="input-group-prepend align-items-stretch">
           <%= form_tag aircrafts_path, method: :get do %>
-          <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Find an aircraft"
-          %>
-          <%= submit_tag "SEARCH", class: "nav-link nav-custom grey" %>
+            <%= text_field_tag :query,
+                params[:query],
+                class: "form-control, nav-item",
+                placeholder: "Find an aircraft"
+            %>
+            <%= button_tag type: :submit,
+              class: "nav-link nav-custom grey" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
           <% end %>
           </div>
         </div>
@@ -28,9 +31,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav align-items-center mr-auto">
             <li class="nav-item">
               <%= link_to "VIEW PLANES",
                 aircrafts_path,
