@@ -8,7 +8,8 @@
   def create
     @review = Review.new(review_params)
     @aircraft = Aircraft.find(params[:aircraft_id])
-    if @review.save!
+    authorize @review
+    if review.save
       redirect_to user_aircraft_path(@review.booking.aircraft)
     else
       render 'new'

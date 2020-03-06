@@ -1,6 +1,7 @@
 <div class="container d-flex justify-content-center my-3">
   <h3>YOUR BOOKINGS</h3>
 </div>
+
 <div class="container my-5">
   <div class="d-flex justify-content-center">
     <nav class="nav nav-pills" role="tablist">
@@ -10,11 +11,47 @@
   </div>
 </div>
 
+
 <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="customer-rentals" role="tabpanel" aria-labelledby="pills-home-tab">
     </div>
     <div class="tab-pane fade" id="my-rentals" role="tabpanel" aria-labelledby="pills-profile-tab">
       <%= render 'my_rentals', user: @user %>
+
+                <h2 class="card-trip-pricing"><%= "$#{booking.aircraft.unit_price}" %></h2>
+                <% if booking.aircraft.user.photo.attached? %>
+                  <%= cl_image_tag booking.aircraft.user.photo.key,
+                    crop: :thumb,
+                    gravity: :face,
+                    height: 40,
+                    width: 40,
+                    class: "card-trip-user avatar-bordered" %>
+                <% else %>
+                    <%= cl_image_tag 'avatar',
+                      crop: :thumb,
+                      gravity: :face,
+                      height: 40,
+                      width: 40,
+                      class: "card-trip-user avatar-bordered" %>
+                <% end %>
+              </div>
+              <div>
+                <p>START DATE: <%= booking.start_date %></p>
+                <p>END DATE: <%= booking.end_date %></p>
+                <p>CONFIRMED? <%= booking.confirm %></p>
+                <% if policy(booking).show? %>
+                  <p><%= link_to "view booking", booking_path(booking) %></p>
+                <% end %>
+                <% if policy(booking).destroy? %>
+                  <p><%= link_to "Cancel booking", booking_path(booking),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 
