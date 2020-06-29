@@ -1,0 +1,40 @@
+p { margin: 0; }
+
+// LINKS ALL "UPDATE..." OPTIONS TO UPDATE MODAL
+.update-user-btn {
+  text-decoration: none;
+  color: #D3D3D3;
+  opacity: 0.5;
+
+  &:hover {
+    text-decoration: none;
+    color: #D3D3D3;
+    opacity: 1;
+  }
+}
+
+#user-details {
+  display: flex;
+  div { padding: 5px; }
+}
+
+
+#user-image {}
+
+#user-information {
+  flex-grow: 1;
+
+  .content-item {
+    display: flex;
+    border-bottom: 1px solid grey;
+  }
+
+  .content-item .content {
+    font-weight: bold;
+  }
+
+  #content-content {
+    border-bottom: none;
+  }
+}
+
