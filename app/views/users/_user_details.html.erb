@@ -1,7 +1,14 @@
 <div class="container" id="user-details">
   <div id="user-image">
     <% if user.photo.attached? %>
-      <%= link_to ( cl_image_tag user.photo.key,
+      <%= cl_image_tag user.photo.key,
+        crop: :thumb,
+        gravity: :face,
+        height: 150,
+        width: 150,
+        class: "avatar-large"  %>
+    <% else %>
+      <%= link_to ( cl_image_tag 'avatar',
         crop: :thumb,
         gravity: :face,
         height: 150,
@@ -9,14 +16,6 @@
         class: "avatar-large" ),
           "#{user_path}#editUserModalCenter",
           class: "update-user update-user-img" %>
-
-    <% else %>
-      <%= cl_image_tag 'avatar',
-        crop: :thumb,
-        gravity: :face,
-        height: 150,
-        width: 150,
-        class: "avatar-large" %>
     <% end %>
   </div>
   <div id="user-information">
