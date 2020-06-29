@@ -1,8 +1,10 @@
-.user-tabs {
+#user-tabs {
 
 }
 
-.user-content {
+#user-content {
+  .active {
+  }
   .hide {
     display: none;
   }

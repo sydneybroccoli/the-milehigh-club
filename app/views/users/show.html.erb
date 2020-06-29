@@ -24,11 +24,12 @@
     </a>
   </div>
 
-  <div class="user-content">
-    <div class="nav-content hide" id="user-profile">
+  <div id="user-content">
+    <!-- USER ACCOUNT INFORMATION ACTIVE BY DEFAULT -->
+    <div class="nav-content active" id="user-profile">
       <%= render 'update_info', user: @user %>
     </div>
-    <div class="nav-content" id="user-aircrafts">
+    <div class="nav-content hide" id="user-aircrafts">
       <%= render 'user_aircraft', user: @user %>
     </div>
     <div class="nav-content hide" id="user-bookings">
