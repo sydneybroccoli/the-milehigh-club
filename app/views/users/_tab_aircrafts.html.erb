@@ -30,9 +30,13 @@
                   <div>
                     <%= link_to icon('far', 'edit',
                       class: 'fa-lg'),
-                        '#',
+                        "#{aircraft.id}#aircraftEditModalCenter",
+                        id: 'aircraft-edit-btn',
                         class: 'aircraft-btn',
-                        id: 'aircraft-edit-btn' %>
+                        data: { toggle: 'modal',
+                                id: aircraft.id,
+                                info: aircraft.to_json,
+                                target: '#aircraftEditModalCenter' } %>
                   </div>
                 <% end %>
               </div>
@@ -44,15 +48,17 @@
                       class: 'fa-lg'),
                         aircraft_path(aircraft.id),
                         method: :delete,
-                        class: 'aircraft-btn',
                         id: 'aircraft-delete-btn',
+                        class: 'aircraft-btn',
                         data: { confirm: 'ARE YOU SURE?'} %>
                   </div>
                 <% end %>
               </div>
             </div>
           </div>
-        <% end %> <!-- END OF AIRCRAFTS LOOP -->
+          <%= render 'aircraft_edit_modal',
+            aircraft: aircraft %>
+          <% end %> <!-- END OF AIRCRAFTS LOOP -->
       </div>
     <% end %> <!-- END OF IF ELSE -->
   </div>

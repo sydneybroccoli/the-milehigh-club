@@ -53,6 +53,7 @@ class AircraftsController < ApplicationController
 
   def edit
     @user = current_user
+    set_aircraft
   end
 
   def update

@@ -10,7 +10,7 @@ import { aircraftEditModal } from "./aircraft_edit_modal";
 
 initMapbox();
 dashboardSelection();
-userUpdateModal();
+userEditModal();
 aircraftEditModal();
 
 
