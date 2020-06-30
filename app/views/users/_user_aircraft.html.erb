@@ -11,45 +11,49 @@
         <% user.aircrafts.each do |aircraft| %>
           <div class="card-product">
             <%= cl_image_tag aircraft.photos[0].key %>
-            <div class="card-trip-infos p-4 flex-one">
-              <div class="card-top-info">
-                <div>
-                  <h3><%= aircraft.make %></h3>
-                  <h3><%= aircraft.model %></h3>
-                  <h2 class="card-trip-pricing">
-                    <%= "$#{aircraft.unit_price}" %>
-                  </h2>
-                </div>
-                <div>
-                  <% if policy(aircraft).destroy? %>
-                    <div class="d-flex">
-                      <%= link_to 'DESTROY',
-                        aircraft,
-                        class: "nav-link nav-custom",
-                        method: :delete,
-                        data: { confirm: 'ARE YOU SURE?'} %>
-                    </div>
-                  <% end %>
-                  <% if policy(aircraft).update? %>
-                    <div>
-                      <button class="edit-modal-btn nav-link nav-custom" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-aircraft-form">
-                      UPDATE/EDIT
-                      </button>
-                    </div>
-                  <% end %>
-                </div>
+
+            <div class="card-product-infos p-4 flex-one">
+              <div id="aircraft-makemodel">
+                <h3><%= aircraft.make %> <%= aircraft.model %></h3>
               </div>
-              <p>DESCRIPTION:</p>
-              <p><%= aircraft.description %></p>
+              <div id="aircraft-pricing">
+                <h2><%= "$#{aircraft.unit_price}" %></h2>
+              </div>
+              <div id="aircraft-description">
+                <p><%= aircraft.description %></p>
+              </div>
+            </div>
+
+            <div class="card-product-controls">
+              <div id="aircraft-edit">
+                <% if policy(aircraft).update? %>
+                  <div>
+                    <button class="edit-modal-btn nav-link nav-custom" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-aircraft-form">
+                    UPDATE/EDIT
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+
+              <div id="aircraft-destroy">
+                <% if policy(aircraft).destroy? %>
+                  <div class="d-flex">
+                    <%= link_to 'DESTROY',
+                      aircraft,
+                      class: "nav-link nav-custom",
+                      method: :delete,
+                      data: { confirm: 'ARE YOU SURE?'} %>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
-        <% end %>
+        <% end %> <!-- END OF AIRCRAFTS LOOP -->
       </div>
-    <% end %>
-
+    <% end %> <!-- END OF IF ELSE -->
   </div>
 
-  <div id="list-aircraft">
+  <div id="aircrafts-create">
 
   </div>
 </div>
