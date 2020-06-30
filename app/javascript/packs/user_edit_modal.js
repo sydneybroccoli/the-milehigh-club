@@ -1,4 +1,4 @@
-export const userUpdateModal = () => {
+export const userEditModal = () => {
   const btns = document.querySelectorAll('.update-user');
   const update = document.querySelector('#user-update-btn');
 

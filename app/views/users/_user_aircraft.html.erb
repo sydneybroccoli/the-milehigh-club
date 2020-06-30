@@ -28,9 +28,11 @@
               <div id="aircraft-edit">
                 <% if policy(aircraft).update? %>
                   <div>
-                    <button class="edit-modal-btn nav-link nav-custom" data-info="<%= aircraft.to_json %>" data-id="<%= aircraft.id %>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-aircraft-form">
-                    UPDATE/EDIT
-                    </button>
+                    <%= link_to icon('far', 'edit',
+                      class: 'fa-lg'),
+                        '#',
+                        class: 'aircraft-btn',
+                        id: 'aircraft-edit-btn' %>
                   </div>
                 <% end %>
               </div>
@@ -38,11 +40,13 @@
               <div id="aircraft-destroy">
                 <% if policy(aircraft).destroy? %>
                   <div class="d-flex">
-                    <%= link_to 'DESTROY',
-                      aircraft,
-                      class: "nav-link nav-custom",
-                      method: :delete,
-                      data: { confirm: 'ARE YOU SURE?'} %>
+                    <%= link_to icon('fas', 'trash',
+                      class: 'fa-lg'),
+                        aircraft_path(aircraft.id),
+                        method: :delete,
+                        class: 'aircraft-btn',
+                        id: 'aircraft-delete-btn',
+                        data: { confirm: 'ARE YOU SURE?'} %>
                   </div>
                 <% end %>
               </div>
