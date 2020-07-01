@@ -1,5 +1,5 @@
 <div class="form-container">
-  <%= simple_form_for @aircraft do |f| %>
+  <%= simple_form_for aircraft, remote: true do |f| %>
     <div class="aircraft-form-row">
       <%= f.input :make, placeholder: 'MAKE' %>
       <%= f.input :model, placeholder: 'MODEL' %>
