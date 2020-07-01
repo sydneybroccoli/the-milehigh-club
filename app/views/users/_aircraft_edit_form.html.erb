@@ -1,0 +1,20 @@
+<div class="form-container">
+  <%= simple_form_for aircraft, remote: true do |f| %>
+    <div class="aircraft-form-row">
+      <%= f.input :make, placeholder: 'MAKE' %>
+      <%= f.input :model, placeholder: 'MODEL' %>
+      <%= f.input :year, placeholder: 'YEAR' %>
+    </div>
+    <div class="aircraft-form-row">
+      <%= f.input :unit_price, placeholder: 'unit_price' %>
+      <%= f.input :capacity, placeholder: 'SEATS' %>
+      <%= f.input :hours, placeholder: 'HOURS' %>
+    </div>
+    <%= f.input :location, placeholder: 'LOCATION' %>
+    <%= f.input :description, as: :string, type: :text %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.submit "UPDATE AIRCRAFT",
+      class: "btn btn-primary",
+      id: 'aircraft-update-confirm' %>
+  <% end %>
+</div>

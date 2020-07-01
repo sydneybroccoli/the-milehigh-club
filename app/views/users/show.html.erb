@@ -6,34 +6,34 @@
       href=""
       class="nav-link active"
       id="user-profile">
-        ACCOUNT INFORMATION
+        USER ACCOUNT
     </a>
 
     <a
       href=""
       class="nav-link"
       id="user-aircrafts">
-        YOUR AIRCRAFTS
+        USER AIRCRAFTS
     </a>
 
     <a
       href=""
       class="nav-link"
       id="user-bookings">
-        YOUR BOOKINGS/RENTALS
+        USER BOOKINGS/RENTALS
     </a>
   </div>
 
   <div id="user-content">
     <!-- USER ACCOUNT INFORMATION ACTIVE BY DEFAULT -->
     <div class="nav-content active" id="user-profile">
-      <%= render 'update_info', user: @user %>
+      <%= render 'tab_user', user: @user %>
     </div>
     <div class="nav-content hide" id="user-aircrafts">
-      <%= render 'user_aircraft', user: @user %>
+      <%= render 'tab_aircrafts', user: @user %>
     </div>
     <div class="nav-content hide" id="user-bookings">
-      <%= render 'user_bookings', user: @user %>
+      <%= render 'tab_bookrent', user: @user %>
     </div>
   </div>
 

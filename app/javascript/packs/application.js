@@ -5,12 +5,10 @@ import "../plugins/init_flatpickr.js"
 
 import { initMapbox } from '../plugins/init_mapbox';
 import { dashboardSelection } from "./user_dashboard";
-import { userUpdateModal } from "./user_update_modal";
-import { updateEditModal } from "./modal_aircraft_form";
+import { userEditModal } from "./user_edit_modal";
 
 initMapbox();
 dashboardSelection();
-userUpdateModal();
-updateEditModal();
+userEditModal();
 
 

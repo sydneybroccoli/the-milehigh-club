@@ -53,6 +53,7 @@ class AircraftsController < ApplicationController
 
   def edit
     @user = current_user
+    set_aircraft
   end
 
   def update
@@ -65,6 +66,11 @@ class AircraftsController < ApplicationController
       @aircraft.destroy
       redirect_to user_path(current_user)
     else
+      # DESTROY ALL REVIEWS RELATED TO AIRCRAFT
+      @aircraft.reviews.each do |review|
+        review.destroy
+      end
+      # DESTROY ALL BOOKINGS RELATED TO AIRCRAFT
       @aircraft.bookings.each do |booking|
         booking.destroy
       end

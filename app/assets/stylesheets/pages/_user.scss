@@ -1,11 +1,65 @@
-#user-tabs {
-
-}
-
+#user-tabs {}
 #user-content {
-  .active {
-  }
-  .hide {
-    display: none;
-  }
+  .hide { display: none; }
 }
+
+// COMMON
+.header {
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+  letter-spacing: 2px;
+}
+
+// TAB - USER
+
+// TAB - AIRCRAFTS
+// .card-product {
+//   border-radius: 5px;
+//   overflow: hidden;
+//   min-height:240px;
+//   height: 100%;
+//   margin-top:16px;
+//   margin-bottom:16px;
+//   background: white;
+//   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+//   display: flex;
+//   align-items:start;
+// }
+
+.aircraft-card {
+  border-radius: 5px;
+  min-height: 240px; height: 100%;
+  margin-top: 16px; margin-bottom: 16px;
+  background: white;
+
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: 33% 1fr auto;
+  column-gap: 5px;
+  grid-template-areas:
+    'img delete delete'
+    'img makemodel makemodel'
+    'img price price'
+    'img description description'
+    'img edit edit';
+
+  .aircraft-card-info {
+    padding: 10px;
+  }
+
+  img {
+    grid-area: img;
+    height: 100%;
+    width: 100%;
+    object-fit: cover; // crops image without distorting
+  }
+  #aircraft-makemodel { grid-area: makemodel; }
+  #aircraft-pricing { grid-area: price; }
+  #aircraft-description { grid-area: description; }
+  #aircraft-edit { grid-area: edit; }
+  #aircraft-delete { grid-area: delete; }
+}
+
+
+// TAB - BOOKINGS/RENTALS

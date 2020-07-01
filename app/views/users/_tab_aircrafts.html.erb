@@ -1,0 +1,82 @@
+<div class="container d-flex-column" id="tab-aircrafts">
+  <div class="header">
+    <h3>YOUR AIRCRAFTS</h3>
+  </div>
+
+  <div class="content" id="aircrafts-create">
+    <% if policy(@aircraft).create? %>
+      <%= link_to 'CREATE NEW AIRCRAFT LISTING',
+          '#',
+          id: 'aircraft-create-btn',
+          class: 'aircraft-btn nav-custom grey',
+          type: 'button',
+          data: { toggle: 'modal',
+                  target: '#aircraftCreateModalCenter' } %>
+      <div class="aircraft-create-modal">
+        <%= render 'aircraft_create_modal',
+                aircraft: Aircraft.new %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="content" id="aircrafts">
+    <% if user.aircrafts.count < 1 %>
+      <p>YOU DON'T HAVE ANY AIRCRAFTS LISTED... :(</p>
+    <% else %>
+      <div class="">
+        <% user.aircrafts.each do |aircraft| %>
+          <div class="aircraft-card">
+            <%= cl_image_tag aircraft.photos[0].key %>
+
+            <div class="aircraft-card-info">
+              <div id="aircraft-makemodel">
+                <h3><%= aircraft.make %> <%= aircraft.model %></h3>
+              </div>
+              <div id="aircraft-pricing">
+                <h2><%= "$#{aircraft.unit_price}/DAY" %></h2>
+              </div>
+              <div id="aircraft-description">
+                <p><%= aircraft.description %></p>
+              </div>
+            </div>
+
+              <div class="aircraft-card-controls" id="aircraft-edit">
+                <% if policy(aircraft).update? %>
+                  <div>
+                    <%= link_to 'EDIT LISTING',
+                        "#{aircraft.id}#aircraftEditModalCenter",
+                        id: 'aircraft-edit-btn',
+                        class: 'aircraft-btn nav-custom grey',
+                        type: 'button',
+                        data: { toggle: 'modal',
+                                id: aircraft.id,
+                                info: aircraft.to_json,
+                                target: '#aircraftEditModalCenter' } %>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="aircraft-card-controls" id="aircraft-destroy">
+                <% if policy(aircraft).destroy? %>
+                  <div class="d-flex">
+                    <%= link_to icon('fas', 'trash',
+                      class: 'fa-lg'),
+                        aircraft_path(aircraft.id),
+                        method: :delete,
+                        id: 'aircraft-delete-btn',
+                        class: 'aircraft-btn nav-custom grey',
+                        type: 'button',
+                        data: { confirm: 'ARE YOU SURE?'} %>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+          <%= render 'aircraft_edit_modal',
+            aircraft: aircraft %>
+          <% end %> <!-- END OF AIRCRAFTS LOOP -->
+      </div>
+    <% end %> <!-- END OF IF ELSE -->
+  </div>
+</div>
+
+
