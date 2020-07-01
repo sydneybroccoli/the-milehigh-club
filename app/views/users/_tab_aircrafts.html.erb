@@ -3,6 +3,21 @@
     <h3>YOUR AIRCRAFTS</h3>
   </div>
 
+  <div id="aircrafts-create">
+    <% if policy(@aircraft).create? %>
+      <%= link_to 'CREATE NEW AIRCRAFT LISTING',
+          '#',
+          id: 'aircraft-create-btn',
+          class: 'aircraft-btn nav-custom',
+          data: { toggle: 'modal',
+                  target: '#aircraftCreateModalCenter' } %>
+      <div class="aircraft-create-modal">
+        <%= render 'aircraft_create_modal',
+                aircraft: Aircraft.new %>
+      </div>
+    <% end %>
+  </div>
+
   <div class="content" id="aircrafts">
     <% if user.aircrafts.count < 1 %>
       <p>YOU DON'T HAVE ANY AIRCRAFTS LISTED... :(</p>
@@ -61,10 +76,6 @@
           <% end %> <!-- END OF AIRCRAFTS LOOP -->
       </div>
     <% end %> <!-- END OF IF ELSE -->
-  </div>
-
-  <div id="aircrafts-create">
-
   </div>
 </div>
 
