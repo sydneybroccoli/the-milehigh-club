@@ -20,7 +20,14 @@
       href=""
       class="nav-link"
       id="user-bookings">
-        USER BOOKINGS/RENTALS
+        USER BOOKINGS
+    </a>
+
+    <a
+      href=""
+      class="nav-link"
+      id="user-rentals">
+        USER RENTALS
     </a>
   </div>
 
@@ -33,7 +40,10 @@
       <%= render 'tab_aircrafts', user: @user %>
     </div>
     <div class="nav-content hide" id="user-bookings">
-      <%= render 'tab_bookrent', user: @user %>
+      <%= render 'tab_book', user: @user %>
+    </div>
+    <div class="nav-content hide" id="user-rentals">
+      <%= render 'tab_rent', user: @user %>
     </div>
   </div>
 
